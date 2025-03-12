@@ -148,7 +148,7 @@ return (
               </Float>
             </Suspense>
           ))}
-          <Environment files="http://localhost:5173/public/models/machine_shop_02_1k.hdr" />
+          <Environment files="https://master--bejewelled-bunny-c31012.netlify.app/public/models/machine_shop_02_1k.hdr" />
         </group>
       </Canvas>
     </div>

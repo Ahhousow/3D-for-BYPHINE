@@ -14,7 +14,7 @@ run dev server: npm run dev
 During developement you need to add this code inside the head tag of your webflow project: 
 
 <script type="module">
-import RefreshRuntime from "http://localhost:5173/@react-refresh"
+import RefreshRuntime from "https://master--bejewelled-bunny-c31012.netlify.app/@react-refresh"
 RefreshRuntime.injectIntoGlobalHook(window)
 window.$RefreshReg$ = () => {}
 window.$RefreshSig$ = () => (type) => type
@@ -28,8 +28,8 @@ window.__vite_plugin_react_preamble_installed__ = true
 During developement, you also need to add this at the end of the body tag:
 
 
-<script type="module" src="http://localhost:5173/@vite/client"></script>
-<script type="module" src="http://localhost:5173/src/main.jsx"></script>
+<script type="module" src="https://master--bejewelled-bunny-c31012.netlify.app/@vite/client"></script>
+<script type="module" src="https://master--bejewelled-bunny-c31012.netlify.app/src/main.jsx"></script>
 
 
 👉👉👉

@@ -5,10 +5,10 @@ import gsap from "gsap";
 import Model from "./Model";
 
 const modelsData = [
-  { name: "Da", url: "http://localhost:5173/models/da-transformed.glb" },
-  { name: "Consulting", url: "http://localhost:5173/models/consulting-transformed.glb" },
-  { name: "Event", url: "http://localhost:5173/models/event-transformed.glb" },
-  { name: "Management", url: "http://localhost:5173/models/management-transformed.glb" },
+  { name: "Da", url: "https://master--bejewelled-bunny-c31012.netlify.app/models/da-transformed.glb" },
+  { name: "Consulting", url: "https://master--bejewelled-bunny-c31012.netlify.app/models/consulting-transformed.glb" },
+  { name: "Event", url: "https://master--bejewelled-bunny-c31012.netlify.app/models/event-transformed.glb" },
+  { name: "Management", url: "https://master--bejewelled-bunny-c31012.netlify.app/models/management-transformed.glb" },
 ];
 
 function Objectbyphine({ currentModel }) {

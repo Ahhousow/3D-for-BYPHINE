@@ -8,7 +8,7 @@ import React from 'react'
 import { useGLTF, Float } from '@react-three/drei'
 
 export function Da(props) {
-  const { nodes, materials } = useGLTF('http://localhost:5173/models/DA-TEXT.glb')
+  const { nodes, materials } = useGLTF('https://master--bejewelled-bunny-c31012.netlify.app/models/DA-TEXT.glb')
   return (
     <Float speed={1} rotationIntensity={2} floatIntensity={5} floatingRange={[0,1]}>
       <group {...props} dispose={null}>
@@ -46,4 +46,4 @@ export function Da(props) {
   )
 }
 
-useGLTF.preload('http://localhost:5173/models/DA-TEXT.glb')
+useGLTF.preload('https://master--bejewelled-bunny-c31012.netlify.app/models/DA-TEXT.glb')

@@ -6,7 +6,7 @@ const modelsData = [
     { 
       id: 1, 
       name: 'Creative Studio', 
-      file: 'http://localhost:5173/models/DA-TEXT.glb', 
+      file: 'https://master--bejewelled-bunny-c31012.netlify.app/models/DA-TEXT.glb', 
       link: '#da', 
       pitch: `
        <div class="bloc---detail">
@@ -40,7 +40,7 @@ const modelsData = [
     { 
       id: 2, 
       name: 'Consulting', 
-      file: 'http://localhost:5173/models/consulting-transformed.glb', 
+      file: 'https://master--bejewelled-bunny-c31012.netlify.app/models/consulting-transformed.glb', 
       link: '#consulting', 
       pitch: `
            <div class="bloc---detail">
@@ -72,7 +72,7 @@ const modelsData = [
     { 
       id: 3, 
       name: 'Event', 
-      file: 'http://localhost:5173/models/event-transformed.glb', 
+      file: 'https://master--bejewelled-bunny-c31012.netlify.app/models/event-transformed.glb', 
       link: '#event', 
       pitch: `
            <div class="bloc---detail">
@@ -104,7 +104,7 @@ const modelsData = [
     { 
       id: 4, 
       name: 'Management', 
-      file: 'http://localhost:5173/models/management-transformed.glb', 
+      file: 'https://master--bejewelled-bunny-c31012.netlify.app/models/management-transformed.glb', 
       link: '#management', 
       pitch: `
          <div class="bloc---detail">
