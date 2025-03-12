@@ -151,7 +151,7 @@ return (
           <Environment files="https://master--bejewelled-bunny-c31012.netlify.app/models/machine_shop_02_1k.hdr" />
         </group>
         <EffectComposer>
-        <DepthOfField focusDistance={0.5} focalLength={0.02} bokehScale={10} height={480} />
+        <DepthOfField focusDistance={0.5} focalLength={0.02} bokehScale={10} height={1080} />
       </EffectComposer>
       </Canvas>
     </div>
