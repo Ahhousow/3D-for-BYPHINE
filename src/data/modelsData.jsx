@@ -7,7 +7,7 @@ const modelsData = [
       id: 1, 
       name: 'Creative Studio', 
       file: 'https://master--bejewelled-bunny-c31012.netlify.app/models/DA-TEXT.glb', 
-      link: '#da', 
+      link: 'https://byphine-creative.webflow.io/fragments/creative-direction', 
       pitch: `
        <div class="bloc---detail">
         <div class="content-fragment">
