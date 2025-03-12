@@ -27,9 +27,9 @@ const modelsData = [
            </div>
         <div class="content-p">WE PAY PARTICULAR ATTENTION TO THE RELEVANCE AND EXCELLENCE OF THE FINISHED PRODUCT.</div>
         </div>
-        <a href="#" target="_blank" class="button-2">
+        <a href="https://byphine-creative.webflow.io/fragments/creative-direction" target="_blank" class="button-2">
           <div class="discover-2">
-             <div class="text-6">projects</div>
+             <div class="text-6">DISCOVER</div>
           </div>
         </a>
         </div>
