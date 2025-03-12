@@ -12,7 +12,9 @@ body,
 
 }
 
-
+.logo-header, .menu-open{
+  opacity: 0;
+}
 .app {
 display: block;
 position: relative;

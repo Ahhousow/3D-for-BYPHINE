@@ -107,7 +107,7 @@ const Model = forwardRef(({
           end: '+=650px',
           pin: true,
           invalidateOnRefresh: false,
-          markers: { startColor: "blue", endColor: "blue" },
+        // markers: { startColor: "blue", endColor: "blue" },
           toggleActions: "play none reverse none",
         },
         tl => {
@@ -116,7 +116,7 @@ const Model = forwardRef(({
           .from("#right-arrow", {left: -20, opacity: 0,ease: 'none'}, 0.6)
           .to(".nav-title", {top: -20, padding: '70px', height: 'auto', ease: 'none'}, 0.3)
           .from(".nav-link", {opacity: 0,ease: 'none'}, 0.3)
-          .from(".pitch",{opacity: 0,ease: 'none'}, 0.5)
+        //  .from(".pitch",{opacity: 0,ease: 'none'}, 0.5)
 
         }
       );
