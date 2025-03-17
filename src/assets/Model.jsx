@@ -91,7 +91,7 @@ const Model = forwardRef(({
             end: '+=905px',
             scrub: 1,
             invalidateOnRefresh: false,
-            markers: { startColor: "blue", endColor: "red", indent: 0 },
+           // markers: { startColor: "blue", endColor: "red", indent: 0 },
           },
           tl => {
             tl.to(objectbyphine.rotation, { x: "+=3.14159", y: "+=3.14159", ease: "none" }, 0.5)
@@ -124,7 +124,7 @@ const Model = forwardRef(({
             end: '+=255px',
             pin: true,
             invalidateOnRefresh: false,
-            markers: { startColor: "blue", endColor: "blue", indent: 5 },
+            //markers: { startColor: "blue", endColor: "blue", indent: 5 },
             onLeave: () => {
               gsap.to(".nav-item", { display: "none", ease: 'none' }, 0);
             },
@@ -146,7 +146,7 @@ const Model = forwardRef(({
             end: '+=350px',
             scrub: 1,
             invalidateOnRefresh: false,
-            markers: { startColor: "green", endColor: "green", indent: 15 },
+           // markers: { startColor: "green", endColor: "green", indent: 15 },
             onEnter: () => setFloatEnabled(false),
             onLeaveBack: () => setFloatEnabled(true)
           },
@@ -168,7 +168,7 @@ const Model = forwardRef(({
             end: '+=450px',
             scrub: 1,
             invalidateOnRefresh: true,
-            markers: { startColor: "purple", endColor: "purple", indent: 30 },
+           // markers: { startColor: "purple", endColor: "purple", indent: 30 },
           },
           tl => {
             tl.to(objectbyphine.rotation, { x: "+=2.9", y: "3.5", z: "-=5.9", ease: "none" }, 0)
