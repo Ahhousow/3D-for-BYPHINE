@@ -92,15 +92,15 @@ export default function App() {
     [1, 1, 1],
   ];
 
-  const preventScroll = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    return false;
-  };
+  // const preventScroll = (event) => {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   return false;
+  // };
 
   useLayoutEffect(() => {
-    window.addEventListener('wheel', preventScroll, { passive: false });
-    window.addEventListener('touchmove', preventScroll, { passive: false });
+    // window.addEventListener('wheel', preventScroll, { passive: false });
+    // window.addEventListener('touchmove', preventScroll, { passive: false });
 
     const heroTitle = new SplitType(".big-title-byphine");
     const heroSubTitle = new SplitType(".subtitle-byphine");
@@ -109,8 +109,8 @@ export default function App() {
 
     const introTL = gsap.timeline({
       onComplete: () => {
-        window.removeEventListener('wheel', preventScroll);
-        window.removeEventListener('touchmove', preventScroll);
+        // window.removeEventListener('wheel', preventScroll);
+        // window.removeEventListener('touchmove', preventScroll);
       },
     });
 
