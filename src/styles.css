@@ -238,17 +238,6 @@ canvas{
 
   }
 
-.nav-title {
-    display: block;
-    position: relative;
-    width: 100%;
-    font-size: 1em;
-    text-align: center;
-    text-transform: uppercase;
-    padding: 0px;
-    height: auto;
-    overflow: hidden;
-}
 .nav-contener {
   display: flex;
   justify-content: space-between;
@@ -280,6 +269,7 @@ width: 100%;
   margin-bottom: 100px;
   position: relative;
   z-index: 300;
+  padding: 0 25px 0 25px;
 }
 .color-red{
 
@@ -395,7 +385,7 @@ width: 100%;
 
 @media (max-width: 768px) {
   .navigation {
-    width: 250px;
+    /* width: 250px; */
   }
   .small-container {
     max-width: 400px;
@@ -403,6 +393,9 @@ width: 100%;
 }
 
 @media screen and (max-width: 479px) {
+  .nav-title{
+    font-size: 0.5em;
+  }
   .small-container {
     max-width: 300px;
   }
@@ -410,12 +403,12 @@ width: 100%;
     line-height: 1.2em;
   }
   .subtitle-byphine {
-    font-size: .25em;
+    font-size: .10em;
     line-height: .7em;
   }
   .big-title-byphine {
-    font-size: 1em;
-    line-height: .7em;
+    font-size: 0.5em;
+    line-height: .5em;
   }
   .copyright-byphine {
     line-height: .7em;
@@ -424,7 +417,7 @@ width: 100%;
     font-size: 63px;
   }
   .navigation {
-    width: 200px;
+    /* width: 200px; */
   }
 }
 @media screen and (max-width: 991px) {
@@ -432,15 +425,15 @@ width: 100%;
     max-width: 600px;
   }
   .desc-byphine {
-    font-size: 2vw;
+    font-size: 3vw;
   }
   .subtitle-byphine {
-    font-size: .25em;
+    font-size: .10em;
     line-height: .7em;
   }
   .big-title-byphine {
-    font-size: 1em;
-    line-height: .7em;
+    font-size: 0.5em;
+    line-height: 0.5em;
   }
   .copyright-byphine {
     line-height: .7em;
