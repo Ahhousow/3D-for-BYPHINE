@@ -69,12 +69,21 @@ export default function App() {
     [100, 0, 10],
   ];
 
-  // Compute responsive positions: only adjust the x-axis value on mobile.
-  const responsivePositions = basePositions.map(([x, y, z]) => [
-    isMobile ? x / 2 : x, // Divide x by 2 if mobile
-    y,
-    z,
-  ]);
+// Compute responsive positions: adjust the x-axis value and modify the y-axis for mobile screens
+const responsivePositions = basePositions.map(([x, y, z]) => {
+  const responsiveX = isMobile ? x / 2 : x;
+  let responsiveY = y;
+
+  if (isMobile) {
+    if (y === 50) {
+      responsiveY = 70;
+    } else if (y === -50) {
+      responsiveY = -70;
+    }
+  }
+  return [responsiveX, responsiveY, z];
+});
+
 
   // Carousel state management
   const [carouselModels, setCarouselModels] = useState([
@@ -201,7 +210,7 @@ export default function App() {
         onPrev={() => changeModel(1)}
       />
       <Pitch model={activeModel}/>
-      {/* <div className="footer"></div> */}
+      <div className="footer"></div>
     </div>
   );
 }

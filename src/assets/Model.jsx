@@ -211,7 +211,7 @@ const Model = forwardRef(({
             end: '+=230px',
             scrub: 1,
             invalidateOnRefresh: false,
-            //markers: true,
+          //  markers: true,
             onLeave: () => {
               const textMaterials = [];
               objectbyphine.traverse(child => {
@@ -223,7 +223,7 @@ const Model = forwardRef(({
                 duration: 0.3,
                 opacity: 1,
                 ease: "power2.out",
-                stagger: 0.2
+                stagger: 0.3
               });
             },
             onEnterBack: () => {
@@ -237,7 +237,7 @@ const Model = forwardRef(({
                 duration: 0.3,
                 opacity: 0,
                 ease: "power2.out",
-                stagger: 0.2
+                stagger: 0.3
               });
             },
           },
@@ -253,10 +253,10 @@ const Model = forwardRef(({
             switch(modelData.positionIndex) {
               case 1:
                 // For model with positionIndex 1, rotate slightly on x and y.
-                return { x: "+=0.7854", y: "+=1.5708", ease: "none" };
+                return { x: "+=6.28318", y: "+=5.5708", ease: "none" };
               case 2:
                 // For model with positionIndex 2, rotate on y and z.
-                return { y: "-=1.5708", z: "-=0.7854", ease: "none" };
+                return { y: "+=0.5708", z: "-=6.28318", ease: "none" };
               case 3:
                 // For model with positionIndex 3, rotate on x and z.
                 return { x: "-=6.28318", z: "-=6.28318", ease: "none" };
