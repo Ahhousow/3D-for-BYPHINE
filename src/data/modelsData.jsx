@@ -14,6 +14,7 @@ const modelsData = [
       p2:`THE AGENCYS CREATIVE STUDIO ASSISTS CLIENTS WITH THE ARTISTIC AND CREATIVE DIRECTION.&nbsp;,`,
       p3:`WE PAY PARTICULAR ATTENTION TO THE RELEVANCE AND EXCELLENCE OF THE FINISHED PRODUCT.`,
       color: '#FE0000',
+      coloreye: '#FFFFFF',
       targetMesh: 'Mesh_0003'
     },
     { 
@@ -27,6 +28,7 @@ const modelsData = [
       p2:`THE AGENCYS CREATIVE STUDIO ASSISTS CLIENTS WITH THE ARTISTIC AND CREATIVE DIRECTION.&nbsp;,`,
       p3:`WE PAY PARTICULAR ATTENTION TO THE RELEVANCE AND EXCELLENCE OF THE FINISHED PRODUCT.`,
       color: '#0AC900',
+      coloreye: '#FFFFFF',
       targetMesh: 'Mesh_0005'
     },
     { 
@@ -40,6 +42,7 @@ const modelsData = [
       p2:`THE AGENCYS CREATIVE STUDIO ASSISTS CLIENTS WITH THE ARTISTIC AND CREATIVE DIRECTION.&nbsp;,`,
       p3:`WE PAY PARTICULAR ATTENTION TO THE RELEVANCE AND EXCELLENCE OF THE FINISHED PRODUCT.`,   
       color: '#004AFF',
+      coloreye: '#FFFFFF',
       targetMesh: 'Mesh_0009'
     },
     { 
@@ -52,6 +55,7 @@ const modelsData = [
       p2:`THE AGENCYS CREATIVE STUDIO ASSISTS CLIENTS WITH THE ARTISTIC AND CREATIVE DIRECTION.&nbsp;,`,
       p3:`WE PAY PARTICULAR ATTENTION TO THE RELEVANCE AND EXCELLENCE OF THE FINISHED PRODUCT.`,
       color: '#FFC200',
+      coloreye: '#FFFFFF',
       targetMesh: 'Mesh_0006'
     },
   ];

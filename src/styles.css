@@ -329,14 +329,22 @@ width: 100%;
   text-decoration: none;
   display: flex;
 }
-.vectors-wrapper-5 {
+#icon-reach-us {
   object-fit: cover;
   justify-content: center;
   align-items: center;
-  width: 33.656px;
-  height: 12.1883px;
+  width: 35px;
+  height: 12px;
   text-decoration: none;
   display: flex;
+  background-image:url("https://cdn.prod.website-files.com/66fd5fb3c8ead7df2e10f477/671507bf8a90b6c99d2640a7_Vectors-Wrapper.svg");
+  background-repeat: no-repeat;
+}
+
+.reach-us a{
+  text-decoration: none;
+  color: #000;
+
 }
 .discover-2 {
   grid-row-gap: 10px;

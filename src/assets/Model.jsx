@@ -45,9 +45,23 @@ const Model = forwardRef(({
       // Configure materials
       objectbyphine.traverse(child => {
         if (child.isMesh) {
+          //Body material
           if (child.name === modelData.targetMesh && modelData.color) {
             child.material.color.set(modelData.color);
           }
+           // Eye material
+          // if (
+          //   child.material &&
+          //   child.material.name &&
+          //   child.material.name.startsWith("Material_1") &&
+          //   modelData.color
+          // ) {
+          //   child.material.color.set(modelData.coloreye);
+          //   child.material.transparent = true;
+          //   child.material.metalness = 0;
+          //   child.material.roughness = 0.2;
+          // }
+          //Text material
           if (child.name.includes("Text-")) {
             child.material.opacity = 0;
           } else {
@@ -194,9 +208,10 @@ const Model = forwardRef(({
             id: "3d-actif-vector-path",
             trigger: ".vector-path",
             start: 'top center',
-            end: '+=370px',
+            end: '+=230px',
             scrub: 1,
             invalidateOnRefresh: false,
+            //markers: true,
             onLeave: () => {
               const textMaterials = [];
               objectbyphine.traverse(child => {

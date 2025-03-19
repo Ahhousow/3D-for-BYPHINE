@@ -9,12 +9,12 @@ function Pitch({ model }) {
                 {Array.isArray(model) ? model : <div id="p-2" className="content-p" dangerouslySetInnerHTML={{ __html: model.p2 }} />}
                 <div className="reach-us">
                        <span className="content-p">have a needs ?</span>
-                       <img className="vectors-wrapper-5" alt="" loading="lazy" />
-                       <span className="content-p">reach us</span>
+                       <div id="icon-reach-us" alt="" loading="lazy"/>
+                       <span className="content-p"><a href="https://byphine-creative.webflow.io/reach-us">reach us</a></span>
                 </div> 
                 <div className="vector-path"></div>  
                 {Array.isArray(model) ? model : <div id="p-3" className="content-p" dangerouslySetInnerHTML={{ __html: model.p3}} />}     
-                <a href="#" target="_blank" className="button-2"> DISCOVER</a>
+                <a href={model.link} target="_blank" className="button-primary"> DISCOVER</a>
          </div>
        </div>
       </div>
