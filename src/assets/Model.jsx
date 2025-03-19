@@ -94,7 +94,7 @@ const Model = forwardRef(({
             end: '+=1505px',
             scrub: 1,
             invalidateOnRefresh: false,
-            markers: { startColor: "blue", endColor: "red", indent: 0 },
+           // markers: { startColor: "blue", endColor: "red", indent: 0 },
           },
           tl => {
             tl.to(objectbyphine.rotation, { x: "+=3.14159", y: "+=3.14159", ease: "none" }, 0.2)
@@ -258,7 +258,7 @@ const Model = forwardRef(({
             end: '+=1505px',
             scrub: 1,
             invalidateOnRefresh: false,
-            markers: { startColor: "blue", endColor: "red", indent: 0 },
+           // markers: { startColor: "blue", endColor: "red", indent: 0 },
           },
           tl => {
         tl.to(objectbyphine.rotation, rotationTween, 0);       }
