@@ -14,7 +14,8 @@ const Model = forwardRef(({
   isActive,
   cameraRef,
   controlsRef,
-  setFloatEnabled
+  setFloatEnabled,
+  groupRef  // <-- New prop for the parent group reference
 }, ref) => {
   const { scene: objectbyphine } = useGLTF(modelData.file);
   const modelRef = useRef();
@@ -82,19 +83,21 @@ const Model = forwardRef(({
         const initialTargetY = 0;
         const targetObj = { y: initialTargetY };
 
-        // Timeline for the active model ("3d-actif-start")
+        const addGroupTween = () => {
+          if (groupRef && groupRef.current) {
+        // Single timeline for active model & group rotation ("3d-actif-start")
         createTimeline(
           {
             id: "3d-actif-start",
             trigger: ".hero-stack",
             start: 'bottom bottom',
-            end: '+=905px',
+            end: '+=1505px',
             scrub: 1,
             invalidateOnRefresh: false,
-           // markers: { startColor: "blue", endColor: "red", indent: 0 },
+            markers: { startColor: "blue", endColor: "red", indent: 0 },
           },
           tl => {
-            tl.to(objectbyphine.rotation, { x: "+=3.14159", y: "+=3.14159", ease: "none" }, 0.5)
+            tl.to(objectbyphine.rotation, { x: "+=3.14159", y: "+=3.14159", ease: "none" }, 0.2)
               .to(objectbyphine.scale, { x: scale[0] * 1.5, y: scale[1] * 1.5, z: scale[2] * 1.5 }, 0)
               .fromTo(
                 targetObj,
@@ -104,17 +107,24 @@ const Model = forwardRef(({
                   ease: "none",
                   immediateRender: false,
                   onUpdate: function() {
-                    // Update controls using our persistent target object
                     controlsRef.current.target.y = targetObj.y;
                     controlsRef.current.update();
                   }
-                },
-                0
+                },0
               )
-              .to(cameraRef.current.position, { x: 0, y: -300, z: 300 }, 0);
+              .to(cameraRef.current.position, { x: 0, y: -350, z: 300 }, 0)
+              .to(groupRef.current.rotation, { y: "+=3.14159", z:"+=3.14159", ease: "none" },0.1)
+              .to(groupRef.current.rotation, { y: "+=3.14159", z:"+=3.14159", ease: "none" },0.6);
+
+
           }
         );
-
+      }else {
+        // Wait until groupRef.current is available
+        requestAnimationFrame(addGroupTween);
+      }
+    };
+    addGroupTween();
         // Timeline for navigation ("3d-actif-nav")
         createTimeline(
           {
@@ -220,6 +230,22 @@ const Model = forwardRef(({
             // Additional vector path animations if needed
           }
         );
+      } else {
+        // Non-active models get a simpler timeline that only rotates them.
+        createTimeline(
+          {
+            id: "3d-actif-start", // using the same trigger so the scroll progress is identical
+            trigger: ".hero-stack",
+            start: 'bottom bottom',
+            end: '+=1505px',
+            scrub: 1,
+            invalidateOnRefresh: false,
+            markers: { startColor: "blue", endColor: "red", indent: 0 },
+          },
+          tl => {
+            tl.to(objectbyphine.rotation, { y: "-=3.14159",z: "-=3.14159", ease: "none" }, 0);  
+            tl.to(objectbyphine.rotation, { y: "-=3.14159",z: "-=3.14159", ease: "none" }, 0.5);             }
+        );
       }
 
       // Kill any previous position and scale animations before starting new ones
@@ -271,7 +297,8 @@ const Model = forwardRef(({
     modelData,
     controlsRef,
     cameraRef,
-    setFloatEnabled
+    setFloatEnabled,
+    groupRef  // include groupRef in the dependency list
   ]);
 
   return <primitive object={objectbyphine} ref={modelRef} />;

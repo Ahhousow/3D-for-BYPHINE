@@ -123,14 +123,6 @@ export default function App() {
     //        .from(".scene3d", { opacity: 0, y: -30, duration: 0.75 });
   }, []);
 
-  useEffect(() => {
-    if (!isSceneGroupReady) return;
-    // Optionally add ScrollTrigger animations for the scene here.
-    return () => {
-      // Cleanup if needed.
-    };
-  }, [isSceneGroupReady]);
-
   const changeModel = (direction) => {
     ScrollTrigger.getAll().forEach(st => {
       if (st.vars.id && st.vars.id.startsWith("3d-actif")) {
@@ -172,12 +164,12 @@ export default function App() {
       >
         <Canvas className="scene3d">
           <OrbitControls ref={controlsRef} enableZoom={false} enableRotate={false} target={[0, 0, 0]} />
+          <Camera ref={cameraRef} />
           <group ref={node => { 
             sceneGroupRef.current = node; 
             if (node && !isSceneGroupReady) setIsSceneGroupReady(true);
           }}>
             <ambientLight intensity={0.1} />
-            <Camera ref={cameraRef} />
             {carouselModels.map((model) => (
               <Suspense fallback={<FallbackLoader />} key={model.id}>
                 <Float
@@ -193,6 +185,7 @@ export default function App() {
                     cameraRef={cameraRef}
                     controlsRef={controlsRef}
                     setFloatEnabled={setFloatEnabled}
+                    groupRef={sceneGroupRef} 
                   />
                 </Float>
               </Suspense>
