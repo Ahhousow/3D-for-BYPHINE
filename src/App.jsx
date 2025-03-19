@@ -210,7 +210,7 @@ const responsivePositions = basePositions.map(([x, y, z]) => {
         onPrev={() => changeModel(1)}
       />
       <Pitch model={activeModel}/>
-      <div className="footer"></div>
+      {/* <div className="footer"></div> */}
     </div>
   );
 }
