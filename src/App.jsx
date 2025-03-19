@@ -71,7 +71,7 @@ export default function App() {
 
 // Compute responsive positions: adjust the x-axis value and modify the y-axis for mobile screens
 const responsivePositions = basePositions.map(([x, y, z]) => {
-  const responsiveX = isMobile ? x / 2 : x;
+  const responsiveX = isMobile ? x / 1.2 : x;
   let responsiveY = y;
 
   if (isMobile) {
