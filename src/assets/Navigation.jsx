@@ -7,7 +7,7 @@ function Navigation({ model, onPrev, onNext }) {
                 <div className="nav-item">
                     <button id="left-arrow" onClick={onPrev} className="nav-arrow"></button>
                 </div>
-                <a href={model.link} target="_blank" className="button-primary"> 
+                <a href={model.link} target="_blank"> 
                      <h1 className="nav-title">{model && model.name ? model.name : 'Model Name'}</h1>
                 </a>
                 <div className="nav-item">
