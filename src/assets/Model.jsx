@@ -113,8 +113,8 @@ const Model = forwardRef(({
                 },0
               )
               .to(cameraRef.current.position, { x: 0, y: -350, z: 300 }, 0)
-              .to(groupRef.current.rotation, { y: "+=3.14159", z:"+=3.14159", ease: "none" },0.1)
-              .to(groupRef.current.rotation, { y: "+=3.14159", z:"+=3.14159", ease: "none" },0.6);
+               .to(groupRef.current.rotation, { y: "+=3.14159", z:"+=3.14159", ease: "none" },0.1)
+               .to(groupRef.current.rotation, { y: "+=3.14159", z:"+=3.14159", ease: "none" },0.6);
 
 
           }
@@ -231,7 +231,25 @@ const Model = forwardRef(({
           }
         );
       } else {
-        // Non-active models get a simpler timeline that only rotates them.
+
+          // Non-active models get a unique rotation tween based on their positionIndex.
+          // Here we use a switch to set different rotation properties.
+          const rotationTween = (() => {
+            switch(modelData.positionIndex) {
+              case 1:
+                // For model with positionIndex 1, rotate slightly on x and y.
+                return { x: "+=0.7854", y: "+=1.5708", ease: "none" };
+              case 2:
+                // For model with positionIndex 2, rotate on y and z.
+                return { y: "-=1.5708", z: "-=0.7854", ease: "none" };
+              case 3:
+                // For model with positionIndex 3, rotate on x and z.
+                return { x: "-=6.28318", z: "-=6.28318", ease: "none" };
+              default:
+                // Default tween (if needed)
+                return { y: "+=1.5708", ease: "none" };
+            }
+          })();
         createTimeline(
           {
             id: "3d-actif-start", // using the same trigger so the scroll progress is identical
@@ -243,8 +261,7 @@ const Model = forwardRef(({
             markers: { startColor: "blue", endColor: "red", indent: 0 },
           },
           tl => {
-            tl.to(objectbyphine.rotation, { y: "-=3.14159",z: "-=3.14159", ease: "none" }, 0);  
-            tl.to(objectbyphine.rotation, { y: "-=3.14159",z: "-=3.14159", ease: "none" }, 0.5);             }
+        tl.to(objectbyphine.rotation, rotationTween, 0);       }
         );
       }
 
