@@ -105,10 +105,12 @@ const Model = forwardRef(({
             id: "3d-actif-start",
             trigger: ".hero-stack",
             start: 'bottom bottom',
-            end: '+=1505px',
+            endTrigger: '.navigation',
+         //   end: '+=1505px',
+            end: 'top center',
             scrub: 1,
             invalidateOnRefresh: false,
-           // markers: { startColor: "blue", endColor: "red", indent: 0 },
+            markers: { startColor: "blue", endColor: "red", indent: 0 },
           },
           tl => {
             tl.to(objectbyphine.rotation, { x: "+=3.14159", y: "+=3.14159", ease: "none" }, 0.2)
