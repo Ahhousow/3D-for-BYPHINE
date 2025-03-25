@@ -15,31 +15,6 @@ import SplitType from 'split-type';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-function ScrollTriggersInitializer() {
-  useEffect(() => {
-    const refreshTriggers = () => {
-      ScrollTrigger.refresh();
-    };
-
-    if (document.readyState === 'complete') {
-      refreshTriggers();
-    } else {
-      window.addEventListener('load', refreshTriggers);
-    }
-
-    const timeoutId = setTimeout(() => {
-      refreshTriggers();
-    }, 1000);
-
-    return () => {
-      window.removeEventListener('load', refreshTriggers);
-      clearTimeout(timeoutId);
-    };
-  }, []);
-
-  return null;
-}
-
 export default function App() {
   const cameraRef = useRef();
   const controlsRef = useRef();
@@ -101,15 +76,15 @@ const responsivePositions = basePositions.map(([x, y, z]) => {
     [1, 1, 1],
   ];
 
-  // const preventScroll = (event) => {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   return false;
-  // };
+  const preventScroll = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+  };
 
   useLayoutEffect(() => {
-    // window.addEventListener('wheel', preventScroll, { passive: false });
-    // window.addEventListener('touchmove', preventScroll, { passive: false });
+    window.addEventListener('wheel', preventScroll, { passive: false });
+    window.addEventListener('touchmove', preventScroll, { passive: false });
 
     const heroTitle = new SplitType(".big-title-byphine");
     const heroSubTitle = new SplitType(".subtitle-byphine");
@@ -118,18 +93,18 @@ const responsivePositions = basePositions.map(([x, y, z]) => {
 
     const introTL = gsap.timeline({
       onComplete: () => {
-        // window.removeEventListener('wheel', preventScroll);
-        // window.removeEventListener('touchmove', preventScroll);
+        window.removeEventListener('wheel', preventScroll);
+        window.removeEventListener('touchmove', preventScroll);
       },
     });
 
-    // Example animations (uncomment and adjust as needed):
-    // introTL.from(heroTitle.chars, { duration: 0.2, ease: "back", filter: "blur(0.3em)", opacity: 0, scale: 1.5, stagger: 0.2 })
-    //        .from(heroSubTitle.chars, { duration: 0.2, delay: 0.25, ease: "back", filter: "blur(0.3em)", opacity: 0, scale: 0.5, stagger: 0.02, xPercent: -25 })
-    //        .from(heroDescTitle.chars, { duration: 0.5, filter: "blur(0.3em)", opacity: 0, y: 10, stagger: 0.02 })
-    //        .from(copyrightTitle.chars, { duration: 0.5, filter: "blur(0.3em)", opacity: 0, y: 10, stagger: 0.02 }, "<")
-    //        .to(".logo-header, .menu-open", { opacity: 0, y: -30, duration: 0.75 })
-    //        .from(".scene3d", { opacity: 0, y: -30, duration: 0.75 });
+   // Example animations (uncomment and adjust as needed):
+    introTL.from(heroTitle.chars, { duration: 0.2, ease: "back", filter: "blur(0.3em)", opacity: 0, scale: 1.5, stagger: 0.2 })
+           .from(heroSubTitle.chars, { duration: 0.2, delay: 0.25, ease: "back", filter: "blur(0.3em)", opacity: 0, scale: 0.5, stagger: 0.02, xPercent: -25 })
+           .from(heroDescTitle.chars, { duration: 0.5, filter: "blur(0.3em)", opacity: 0, y: 10, stagger: 0.02 })
+           .from(copyrightTitle.chars, { duration: 0.5, filter: "blur(0.3em)", opacity: 0, y: 10, stagger: 0.02 }, "<")
+           .to(".logo-header, .menu-open", { opacity: 0, y: -30, duration: 0.75 })
+           .from(".scene3d", { opacity: 0, y: -30, duration: 0.75 });
   }, []);
 
   const changeModel = (direction) => {
@@ -151,9 +126,9 @@ const responsivePositions = basePositions.map(([x, y, z]) => {
       });
     });
 
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100);
+    // setTimeout(() => {
+    //   ScrollTrigger.refresh();
+    // }, 100);
   };
 
   return (
@@ -210,7 +185,7 @@ const responsivePositions = basePositions.map(([x, y, z]) => {
         onPrev={() => changeModel(1)}
       />
       <Pitch model={activeModel}/>
-      {/* <div className="footer"></div> */}
+      <div className="footer"></div>
     </div>
   );
 }

@@ -106,14 +106,13 @@ const Model = forwardRef(({
             trigger: ".hero-stack",
             start: 'bottom bottom',
             endTrigger: '.navigation',
-         // end: '+=1505px',
             end: 'top center',
             scrub: 1,
             invalidateOnRefresh: false,
           //  markers: { startColor: "blue", endColor: "red", indent: 0 },
           },
           tl => {
-            tl.to(objectbyphine.rotation, { x: "+=3.14159", y: "+=3.14159", ease: "none" }, 0.2)
+            tl.to(objectbyphine.rotation, { x: "+=9.42477", y: "+=3.14159", z:"+=6.28318", ease: "none" }, 0.2)
               .to(objectbyphine.scale, { x: scale[0] * 1.5, y: scale[1] * 1.5, z: scale[2] * 1.5 }, 0)
               .fromTo(
                 targetObj,
@@ -147,7 +146,7 @@ const Model = forwardRef(({
             id: "3d-actif-nav",
             trigger: ".navigation",
             start: 'top center',
-            end: '+=255px',
+            end: '+=300px',
             pin: true,
             invalidateOnRefresh: false,
             //markers: { startColor: "blue", endColor: "blue", indent: 5 },
@@ -169,7 +168,8 @@ const Model = forwardRef(({
             id: "3d-actif-pitch",
             trigger: ".pitch",
             start: 'top-=80px center',
-            end: '+=350px',
+            endTrigger: '.reach-us',
+            end: 'top center',
             scrub: 1,
             invalidateOnRefresh: false,
            // markers: { startColor: "green", endColor: "green", indent: 15 },
@@ -191,16 +191,17 @@ const Model = forwardRef(({
             id: "3d-actif-reach-us",
             trigger: ".reach-us",
             start: 'top center',
-            end: '+=450px',
+            endTrigger: '#p-3',
+            end: 'bottom bottom',
             scrub: 1,
             invalidateOnRefresh: true,
            // markers: { startColor: "purple", endColor: "purple", indent: 30 },
           },
           tl => {
-            tl.to(objectbyphine.rotation, { x: "+=2.9", y: "3.5", z: "-=5.9", ease: "none" }, 0)
-              .to(objectbyphine.scale, { x: scale[0] * 0.8, y: scale[1] * 0.8, z: scale[2] * 0.8 }, 0)
+            tl.to(objectbyphine.rotation, { x: "+=2.9", y: "3.5", z: "-=5.9", ease: "none" }, 0.5)
+              .to(objectbyphine.scale, { x: scale[0] * 0.8, y: scale[1] * 0.8, z: scale[2] * 0.8 }, 0.5)
               // Update the x tween responsively
-              .to(objectbyphine.position, { x: `-=${100 * offsetXFactor}`, y: "-=10", ease: "none" }, 0);
+              .to(objectbyphine.position, { x: `-=${100 * offsetXFactor}`, y: "-=20", ease: "none" }, 0.5);
           }
         );
 
@@ -209,12 +210,11 @@ const Model = forwardRef(({
           {
             id: "3d-actif-vector-path",
             trigger: ".vector-path",
-            start: 'top center',
-            end: '+=230px',
+            start: 'center center',
             scrub: 1,
             invalidateOnRefresh: false,
-          //  markers: true,
-            onLeave: () => {
+            //markers: true,
+            onEnter: () => {
               const textMaterials = [];
               objectbyphine.traverse(child => {
                 if (child.name.includes("Text-")) {
@@ -228,7 +228,7 @@ const Model = forwardRef(({
                 stagger: 0.3
               });
             },
-            onEnterBack: () => {
+            onToggle: () => {
               const textMaterials = [];
               objectbyphine.traverse(child => {
                 if (child.name.includes("Text-")) {
@@ -255,13 +255,13 @@ const Model = forwardRef(({
             switch(modelData.positionIndex) {
               case 1:
                 // For model with positionIndex 1, rotate slightly on x and y.
-                return { x: "+=6.28318", y: "+=5.5708", ease: "none" };
+                return { x: "+=6.28318", y: "+=5.5708", z:"+=3.14159", ease: "none" };
               case 2:
                 // For model with positionIndex 2, rotate on y and z.
-                return { y: "+=0.5708", z: "-=6.28318", ease: "none" };
+                return { y: "+=0.5708", z: "-=6.28318", z:"+=3.14159", ease: "none" };
               case 3:
                 // For model with positionIndex 3, rotate on x and z.
-                return { x: "-=6.28318", z: "-=6.28318", ease: "none" };
+                return { x: "-=6.28318", z: "-=6.28318", z:"+=3.14159", ease: "none" };
               default:
                 // Default tween (if needed)
                 return { y: "+=1.5708", ease: "none" };
@@ -272,7 +272,8 @@ const Model = forwardRef(({
             id: "3d-actif-start", // using the same trigger so the scroll progress is identical
             trigger: ".hero-stack",
             start: 'bottom bottom',
-            end: '+=1505px',
+            endTrigger: '.navigation',
+            end: 'top center',
             scrub: 1,
             invalidateOnRefresh: false,
            // markers: { startColor: "blue", endColor: "red", indent: 0 },

@@ -30,7 +30,7 @@ canvas{
   z-index: 10;
 }
 /* FOR LOCALHOST DEV */
- /* .footer {
+ .footer {
   z-index: 999;
   grid-column-gap: 0px;
   background-color: var(--bg);
@@ -42,7 +42,7 @@ canvas{
   text-decoration: none;
   display: flex;
   position: relative;
-} */
+}
 /* END FOR LOCALHOST DEV */
 
 .hero-stack {
