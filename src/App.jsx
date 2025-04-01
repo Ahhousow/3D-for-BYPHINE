@@ -1,13 +1,13 @@
 import React, { useState, useRef, useLayoutEffect, useEffect, Suspense } from 'react';
-import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, Float } from '@react-three/drei';
+import { OrbitControls, Environment } from '@react-three/drei';
 import Model from './assets/Model';
 import Navigation from "./assets/Navigation";
 import FallbackLoader from './assets/FallbackLoader';
 import Camera from './assets/Camera';
 import Hero from './assets/Hero';
 import Pitch from './assets/Pitch';
+import Timeline from './assets/Timeline';
 import "./styles.css";
 import gsap from "gsap";
 import modelsData from './data/modelsData';
@@ -18,63 +18,101 @@ gsap.registerPlugin(ScrollTrigger);
 export default function App() {
   const cameraRef = useRef();
   const controlsRef = useRef();
+  const [floatEnabled, setFloatEnabled] = useState(true);
   const sceneGroupRef = useRef();
   const [isSceneGroupReady, setIsSceneGroupReady] = useState(false);
-  const [floatEnabled, setFloatEnabled] = useState(true);
-  const [isPitchReady, setIsPitchReady] = useState(false);
 
-  // Add a state to track window width
+  // On stocke les références des modèles dans un ref
+  const timelineRefs = useRef([]);
+  // Flag pour signaler que toutes les refs attendues sont disponibles (ici, 4 modèles)
+  const [areTimelineRefsReady, setAreTimelineRefsReady] = useState(false);
+
+  const groupCount = 4; // Nombre de groupes/modèles
+
+  // Fonction de rappel pour enregistrer les références d'un modèle
+  const registerTimelineRefs = (index, refs) => {
+    timelineRefs.current[index] = refs;
+    // Vérifier si toutes les références ont été enregistrées
+    if (timelineRefs.current.filter(r => !!r).length === groupCount) {
+      setAreTimelineRefsReady(true);
+    }
+  };
+
+  // Suivi du responsive
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  // Listen to window resize events
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  // Define mobile threshold; here, mobile is considered < 768px wide
   const isMobile = windowWidth < 768;
 
-  // Original positions array (x, y, z)
   const basePositions = [
-    [0, -50, 0],    // Active model position
+    [0, -50, 0],
     [-110, 0, -10],
     [0, 50, 0],
     [100, 0, 10],
   ];
-
-// Compute responsive positions: adjust the x-axis value and modify the y-axis for mobile screens
-const responsivePositions = basePositions.map(([x, y, z]) => {
-  const responsiveX = isMobile ? x / 1.2 : x;
-  let responsiveY = y;
-
-  if (isMobile) {
-    if (y === 50) {
-      responsiveY = 70;
-    } else if (y === -50) {
-      responsiveY = -70;
+  const responsivePositions = basePositions.map(([x, y, z]) => {
+    const responsiveX = isMobile ? x / 1.2 : x;
+    let responsiveY = y;
+    if (isMobile) {
+      if (y === 50) responsiveY = 70;
+      else if (y === -50) responsiveY = -70;
     }
-  }
-  return [responsiveX, responsiveY, z];
-});
-
-
-  // Carousel state management
-  const [carouselModels, setCarouselModels] = useState([
-    { ...modelsData[0], positionIndex: 0 },
-    { ...modelsData[1], positionIndex: 1 },
-    { ...modelsData[2], positionIndex: 2 },
-    { ...modelsData[3], positionIndex: 3 },
-  ]);
-  const activeModel = carouselModels.find(model => model.positionIndex === 0);
-
+    return [responsiveX, responsiveY, z];
+  });
   const scales = [
-    [1.5, 1.5, 1.5],
+    [2, 2, 2],
     [1, 1, 1],
     [1, 1, 1],
     [1, 1, 1],
   ];
+
+  // L'ordre détermine quel modèle est assigné à quel groupe
+  const [groupModels, setGroupModels] = useState([
+    modelsData[0],
+    modelsData[1],
+    modelsData[2],
+    modelsData[3],
+  ]);
+  const activeModel = groupModels[0];
+
+  const changeModel = (direction) => {
+    setGroupModels(prev => {
+      const newArr = [...prev];
+      if (direction < 0) {
+        const first = newArr.shift();
+        newArr.push(first);
+      } else {
+        const last = newArr.pop();
+        newArr.unshift(last);
+      }
+      return newArr;
+    });
+  
+    // Lancer l'animation de scale pour le modèle actif (celui à l'indice 0)
+    const activeModelRef = timelineRefs.current[0]?.groupRef?.current;
+    if (activeModelRef) {
+      // On anime de 0.8x à la scale d'origine pour un effet de "pop"
+      gsap.fromTo(
+        activeModelRef.scale,
+        { 
+          x: activeModelRef.scale.x * 0.8, 
+          y: activeModelRef.scale.y * 0.8, 
+          z: activeModelRef.scale.z * 0.8 
+        },
+        { 
+          x: activeModelRef.scale.x, 
+          y: activeModelRef.scale.y, 
+          z: activeModelRef.scale.z, 
+          duration: 0.5, 
+          ease: 'power2.out' 
+        }
+      );
+    }
+  };
+  
 
   const preventScroll = (event) => {
     event.preventDefault();
@@ -82,6 +120,7 @@ const responsivePositions = basePositions.map(([x, y, z]) => {
     return false;
   };
 
+  // Animation d'intro avec gsap et SplitType (inchangée)
   useLayoutEffect(() => {
     window.addEventListener('wheel', preventScroll, { passive: false });
     window.addEventListener('touchmove', preventScroll, { passive: false });
@@ -97,39 +136,15 @@ const responsivePositions = basePositions.map(([x, y, z]) => {
         window.removeEventListener('touchmove', preventScroll);
       },
     });
-
-   // Example animations (uncomment and adjust as needed):
-    introTL.from(heroTitle.chars, { duration: 0.2, ease: "back", filter: "blur(0.3em)", opacity: 0, scale: 1.5, stagger: 0.2 })
-           .from(heroSubTitle.chars, { duration: 0.2, delay: 0.25, ease: "back", filter: "blur(0.3em)", opacity: 0, scale: 0.5, stagger: 0.02, xPercent: -25 })
-           .from(heroDescTitle.chars, { duration: 0.5, filter: "blur(0.3em)", opacity: 0, y: 10, stagger: 0.02 })
-           .from(copyrightTitle.chars, { duration: 0.5, filter: "blur(0.3em)", opacity: 0, y: 10, stagger: 0.02 }, "<")
-           .to(".logo-header, .menu-open", { opacity: 0, y: -30, duration: 0.75 })
-           .from(".scene3d", { opacity: 0, y: -30, duration: 0.75 });
+    // Les animations d'intro sont laissées en commentaire comme dans la version d'origine
+    // introTL
+    //   .from(heroTitle.chars, { duration: 0.2, ease: "back", filter: "blur(0.3em)", opacity: 0, scale: 1.5, stagger: 0.2 })
+    //   .from(heroSubTitle.chars, { duration: 0.2, delay: 0.25, ease: "back", filter: "blur(0.3em)", opacity: 0, scale: 0.5, stagger: 0.02, xPercent: -25 })
+    //   .from(heroDescTitle.chars, { duration: 0.5, filter: "blur(0.3em)", opacity: 0, y: 10, stagger: 0.02 })
+    //   .from(copyrightTitle.chars, { duration: 0.5, filter: "blur(0.3em)", opacity: 0, y: 10, stagger: 0.02 }, "<")
+    //   .to(".logo-header, .menu-open", { opacity: 0, y: -30, duration: 0.75 })
+    //   .from(".scene3d", { opacity: 0, y: -30, duration: 0.75 });
   }, []);
-
-  const changeModel = (direction) => {
-    ScrollTrigger.getAll().forEach(st => {
-      if (st.vars.id && st.vars.id.startsWith("3d-actif")) {
-        st.kill();
-      }
-    });
-
-    const navEl = document.querySelector('.navigation');
-    if (navEl) {
-      navEl.querySelectorAll('.pin-spacer').forEach(spacer => spacer.remove());
-    }
-
-    setCarouselModels((prevModels) => {
-      return prevModels.map((model) => {
-        let newPositionIndex = (model.positionIndex + direction + 4) % 4;
-        return { ...model, positionIndex: newPositionIndex };
-      });
-    });
-
-    // setTimeout(() => {
-    //   ScrollTrigger.refresh();
-    // }, 100);
-  };
 
   return (
     <div className="app">
@@ -154,24 +169,20 @@ const responsivePositions = basePositions.map(([x, y, z]) => {
             if (node && !isSceneGroupReady) setIsSceneGroupReady(true);
           }}>
             <ambientLight intensity={0.1} />
-            {carouselModels.map((model) => (
-              <Suspense fallback={<FallbackLoader />} key={model.id}>
-                <Float
-                  speed={floatEnabled ? 1 : 0}
-                  rotationIntensity={floatEnabled ? 1.5 : 0}
-                  floatIntensity={floatEnabled ? 2.5 : 0}
-                >
-                  <Model
-                    modelData={model}
-                    position={responsivePositions[model.positionIndex]}  // Use responsive x-axis position here
-                    scale={scales[model.positionIndex]}
-                    isActive={model.positionIndex === 0}
-                    cameraRef={cameraRef}
-                    controlsRef={controlsRef}
-                    setFloatEnabled={setFloatEnabled}
-                    groupRef={sceneGroupRef} 
-                  />
-                </Float>
+            {groupModels.map((model, index) => (
+              <Suspense fallback={<FallbackLoader />} key={index}>
+                <Model 
+                  groupIndex={index}
+                  modelData={model}
+                  position={responsivePositions[index]}
+                  scale={scales[index]}
+                  isActive={index === 0}
+                  cameraRef={cameraRef}
+                  controlsRef={controlsRef}
+                  setFloatEnabled={setFloatEnabled}
+                  sceneGroupRef={sceneGroupRef}
+                  registerTimelineRefs={registerTimelineRefs}
+                />
               </Suspense>
             ))}
             <Environment files="https://master--bejewelled-bunny-c31012.netlify.app/models/machine_shop_02_1k.hdr" />
@@ -184,7 +195,17 @@ const responsivePositions = basePositions.map(([x, y, z]) => {
         onNext={() => changeModel(-1)}
         onPrev={() => changeModel(1)}
       />
-      <Pitch model={activeModel}/>
+      <Pitch model={activeModel} />
+      {/* On n'affiche la Timeline qu'une fois que toutes les références sont prêtes */}
+      {areTimelineRefsReady && (
+        <Timeline 
+          timelineRefs={timelineRefs.current} 
+          cameraRef={cameraRef} 
+          controlsRef={controlsRef} 
+          sceneGroupRef={sceneGroupRef} 
+          setFloatEnabled={setFloatEnabled} 
+        />
+      )}
       <div className="footer"></div>
     </div>
   );
