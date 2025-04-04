@@ -57,7 +57,7 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
             0
           )
           .to(cameraRef.current.position, { x: 0, y: -350, z: 300 }, 0)
-          .to(sceneGroupRef.current.rotation, { y: "+=6.28318", z:"+=6.28318", ease: "none" }, 0.1);
+          .to(sceneGroupRef.current.rotation, { y: "+=6.28318", z:"+=6.28318", ease: "none" }, 0);
 
         gsap.timeline({
           scrollTrigger: {

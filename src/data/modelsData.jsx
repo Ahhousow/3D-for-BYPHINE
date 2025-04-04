@@ -69,7 +69,7 @@ const modelsData = [
       p3:`WE PAY PARTICULAR ATTENTION TO THE RELEVANCE AND EXCELLENCE OF THE FINISHED PRODUCT.`,
       color: '#FF5400',
       coloreye: '#FFFFFF',
-      targetMesh: 'Mesh_0'
+      targetMesh: 'Mesh_0008'
     },
   ];
 

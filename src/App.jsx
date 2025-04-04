@@ -50,9 +50,9 @@ export default function App() {
   const basePositions = [
     [0, -50, 0],
     [-110, 0, -10],
-    [0, 20, 0],
+    [40, 50, -10],
     [100, 0, 10],
-    [0, 90, 10],
+    [-40, 50, 10],
 
   ];
   const responsivePositions = basePositions.map(([x, y, z]) => {
