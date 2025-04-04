@@ -27,7 +27,7 @@ export default function App() {
   // Flag pour signaler que toutes les refs attendues sont disponibles (ici, 4 modèles)
   const [areTimelineRefsReady, setAreTimelineRefsReady] = useState(false);
 
-  const groupCount = 4; // Nombre de groupes/modèles
+  const groupCount = 5; // Nombre de groupes/modèles
 
   // Fonction de rappel pour enregistrer les références d'un modèle
   const registerTimelineRefs = (index, refs) => {
@@ -50,8 +50,10 @@ export default function App() {
   const basePositions = [
     [0, -50, 0],
     [-110, 0, -10],
-    [0, 50, 0],
+    [0, 20, 0],
     [100, 0, 10],
+    [0, 90, 10],
+
   ];
   const responsivePositions = basePositions.map(([x, y, z]) => {
     const responsiveX = isMobile ? x / 1.2 : x;
@@ -67,6 +69,7 @@ export default function App() {
     [1, 1, 1],
     [1, 1, 1],
     [1, 1, 1],
+    [1, 1, 1],
   ];
 
   // L'ordre détermine quel modèle est assigné à quel groupe
@@ -75,6 +78,8 @@ export default function App() {
     modelsData[1],
     modelsData[2],
     modelsData[3],
+    modelsData[4],
+
   ]);
   const activeModel = groupModels[0];
 
