@@ -50,11 +50,10 @@ const Model = ({
         groupIndex,
         position,
         scale,
-        isActive
+        isActive,
       });
     }
-  }, [registerTimelineRefs, groupIndex, position, scale, isActive]);
-
+     }, [registerTimelineRefs, groupIndex, position, scale, isActive]);
   return (
     <group ref={groupRef}>
       <Float speed={2.5} rotationIntensity={1.5} floatIntensity={4.5}>

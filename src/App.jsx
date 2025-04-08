@@ -50,7 +50,7 @@ export default function App() {
   const basePositions = [
     [0, -50, 0],
     [-110, 0, -10],
-    [40, 50, -10],
+    [40, 50, -30],
     [100, 0, 10],
     [-40, 50, 10],
 
@@ -59,8 +59,8 @@ export default function App() {
     const responsiveX = isMobile ? x / 1.2 : x;
     let responsiveY = y;
     if (isMobile) {
-      if (y === 50) responsiveY = 70;
-      else if (y === -50) responsiveY = -70;
+      if (y === 50) responsiveY = 60;
+      else if (y === -50) responsiveY = -60;
     }
     return [responsiveX, responsiveY, z];
   });

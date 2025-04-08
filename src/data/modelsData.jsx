@@ -15,7 +15,8 @@ const modelsData = [
       p3:`WE PAY PARTICULAR ATTENTION TO THE RELEVANCE AND EXCELLENCE OF THE FINISHED PRODUCT.`,
       color: '#FE0000',
       coloreye: '#FFFFFF',
-      targetMesh: 'Mesh_0003'
+      targetMesh: 'Mesh_0003',
+      direction: 'right',
     },
     { 
       id: 2, 
@@ -29,7 +30,8 @@ const modelsData = [
       p3:`WE PAY PARTICULAR ATTENTION TO THE RELEVANCE AND EXCELLENCE OF THE FINISHED PRODUCT.`,
       color: '#0AC900',
       coloreye: '#FFFFFF',
-      targetMesh: 'Mesh_0005'
+      targetMesh: 'Mesh_0005',
+      direction: 'left',
     },
     { 
       id: 3, 
@@ -43,7 +45,8 @@ const modelsData = [
       p3:`WE PAY PARTICULAR ATTENTION TO THE RELEVANCE AND EXCELLENCE OF THE FINISHED PRODUCT.`,   
       color: '#004AFF',
       coloreye: '#FFFFFF',
-      targetMesh: 'Mesh_0009'
+      targetMesh: 'Mesh_0009',
+      direction: 'right',
     },
     { 
       id: 4, 
@@ -56,7 +59,8 @@ const modelsData = [
       p3:`WE PAY PARTICULAR ATTENTION TO THE RELEVANCE AND EXCELLENCE OF THE FINISHED PRODUCT.`,
       color: '#FFC200',
       coloreye: '#FFFFFF',
-      targetMesh: 'Mesh_0006'
+      targetMesh: 'Mesh_0006',
+      direction: 'left',
     },
     { 
       id: 5, 
@@ -69,7 +73,8 @@ const modelsData = [
       p3:`WE PAY PARTICULAR ATTENTION TO THE RELEVANCE AND EXCELLENCE OF THE FINISHED PRODUCT.`,
       color: '#FF5400',
       coloreye: '#FFFFFF',
-      targetMesh: 'Mesh_0008'
+      targetMesh: 'Mesh_0008',
+      direction: 'right',
     },
   ];
 

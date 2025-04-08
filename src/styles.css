@@ -42,6 +42,7 @@ canvas{
   text-decoration: none;
   display: flex;
   position: relative;
+  height: 92px;
 }
 /* END FOR LOCALHOST DEV */
 
