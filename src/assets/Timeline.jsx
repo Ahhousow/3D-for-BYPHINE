@@ -163,7 +163,7 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
             end: 'bottom center', 
             scrub: 1,
             invalidateOnRefresh: true,
-            markers:true,
+           // markers:true,
           }
         })
         .to(groupRef.current.scale, { x: scale[0] * 1.4, y: scale[1] * 1.4, z: scale[2] * 1.4 }, 0)
@@ -216,7 +216,7 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
         start: 'top+=100px bottom',
         scrub: 1,
         invalidateOnRefresh: true,
-        markers: true,
+       // markers: true,
       }
     })
       .fromTo(".img-portal-wrap.right", { x: "-50%", ease: "power2.out" },
