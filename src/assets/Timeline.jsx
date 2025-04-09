@@ -159,15 +159,15 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
           scrollTrigger: {
             id: "3d-actif-end-scroll",
             trigger: "#p-3",
-            start: 'top center',
-            end: 'bottom center',
+            start: 'top-=200px center',
+            end: 'bottom center', 
             scrub: 1,
             invalidateOnRefresh: true,
-            //markers:true,
+            markers:true,
           }
         })
         .to(groupRef.current.scale, { x: scale[0] * 1.4, y: scale[1] * 1.4, z: scale[2] * 1.4 }, 0)
-        .to(groupRef.current.position, {  y: "+=50", ease: "none" }, 0);
+        .to(groupRef.current.position, {  y: "+=90", ease: "none" }, 0);
 
       } else {
         // Pour tous les groupes (actifs ou inactifs), on synchronise via le même ScrollTrigger "3d-actif-start"
@@ -208,8 +208,26 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
       });
     });
 
+    // Animation pour le portal de fin
+    gsap.timeline({
+      scrollTrigger: {
+        id: "portal",
+        trigger: ".discover-portal",
+        start: 'top+=100px bottom',
+        scrub: 1,
+        invalidateOnRefresh: true,
+        markers: true,
+      }
+    })
+      .fromTo(".img-portal-wrap.right", { x: "-50%", ease: "power2.out" },
+                                        { x: "50%", ease: "power2.out" }, 0)
+      .fromTo(".img-portal-wrap.left", { x: "50%", ease: "power2.out" },
+                                       { x: "-50%", ease: "power2.out" }, 0);
+
     timelinesCreated.current = true;
   }, [timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloatEnabled]);
+
+
 
   return null;
 };
