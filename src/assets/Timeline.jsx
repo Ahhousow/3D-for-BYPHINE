@@ -102,17 +102,17 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
           }
         })
         .to(groupRef.current.rotation, { x: "+=2.9", y: "+=3.5", z: "-=5.9", ease: "none" }, 0)
-     //   .to(groupRef.current.scale, { x: scale[0] * 0.7, y: scale[1] * 0.7, z: scale[2] * 0.7 }, 0)
+        .to(groupRef.current.scale, { x: scale[0] * 0.9, y: scale[1] * 0.9, z: scale[2] * 0.9 }, 0)
         // Insertion d'un call qui vérifiera si on est sur mobile
-        .call(() => {
-          if (window.innerWidth < 768) {
-            gsap.to(
-              groupRef.current.scale,
-              { x: scale[0] * 0.9, y: scale[1] * 0.9, z: scale[2] * 0.9, ease: "none" },
-              0
-            );
-          }
-        }, null, 0)
+        // .call(() => {
+        //   if (window.innerWidth < 768) {
+        //     gsap.to(
+        //       groupRef.current.scale,
+        //       { x: scale[0] * 0.9, y: scale[1] * 0.9, z: scale[2] * 0.9, ease: "none" },
+        //       0
+        //     );
+        //   }
+        // }, null, 0)
 
         .to(cameraRef.current.position, { x: 0, y: 0, z: 200 }, 0)
         .to(groupRef.current.position, { x: "-=100", y: "-=20", ease: "none" }, 0);

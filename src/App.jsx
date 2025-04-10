@@ -147,7 +147,7 @@ export default function App() {
       .from(heroSubTitle.chars, { duration: 0.2, delay: 0.25, ease: "back", filter: "blur(0.3em)", opacity: 0, scale: 0.5, stagger: 0.02, xPercent: -25 })
       .from(heroDescTitle.chars, { duration: 0.5, filter: "blur(0.3em)", opacity: 0, y: 10, stagger: 0.02 })
       .from(copyrightTitle.chars, { duration: 0.5, filter: "blur(0.3em)", opacity: 0, y: 10, stagger: 0.02 }, "<")
-      .to(".logo-header, .menu-open", { opacity: 0, y: -30, duration: 0.75 })
+      .from(".logo-header, .menu-open", { opacity: 0, y: -30, duration: 0.75 })
       .from(".scene3d", { opacity: 0, y: -30, duration: 0.75 });
   }, []);
 
