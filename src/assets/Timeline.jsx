@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useState,useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Power2 } from 'gsap';
@@ -43,23 +43,15 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
         })
           .to(groupRef.current.rotation, { y: "+=6.28318", z: "+=4.08318", ease: "none" }, 0)
           .to(groupRef.current.scale, { x: scale[0] * 1.5, y: scale[1] * 1.5, z: scale[2] * 1.5, ease: "none" }, 0)
-
-          .fromTo(
-            targetObj,
-            { y: initialTargetY },
-            { 
-              y: -80,
-              ease: "none",
-              immediateRender: false,
-              onUpdate: function() {
+          .fromTo(targetObj,{ y: initialTargetY },{ y: -80, ease: "none", immediateRender: false,
+                onUpdate: function() {
                 controlsRef.current.target.y = targetObj.y;
                 controlsRef.current.update();
               }
-            },
-            0
+            },0
           )
           .to(cameraRef.current.position, { x: 0, y: -350, z: 100 }, 0)
-          .to(cameraRef.current.position, { z: 300 }, 0.5)
+          //.to(cameraRef.current.position, { z: 300 }, 0.5)
           .to(sceneGroupRef.current.rotation, { y: "+=6.28318", z:"+=6.28318", ease: "none" }, 0);
 
         gsap.timeline({
