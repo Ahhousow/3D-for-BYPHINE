@@ -278,6 +278,7 @@ width: 100%;
   position: relative;
   z-index: 300;
   padding: 0 25px 0 25px;
+  overflow: hidden;
 }
 .color-red{
 
