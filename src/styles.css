@@ -18,7 +18,7 @@ body,
 }
 
 .logo-header, .menu-open{
-  opacity: 0;
+  opacity: 1;
 }
 .app {
 display: block;
