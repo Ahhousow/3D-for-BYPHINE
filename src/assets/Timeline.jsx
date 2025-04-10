@@ -108,7 +108,7 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
           if (window.innerWidth < 768) {
             gsap.to(
               groupRef.current.scale,
-              { x: scale[0] * 1.2, y: scale[1] * 1.2, z: scale[2] * 1.2, ease: "none" },
+              { x: scale[0] * 0.9, y: scale[1] * 0.9, z: scale[2] * 0.9, ease: "none" },
               0
             );
           }
