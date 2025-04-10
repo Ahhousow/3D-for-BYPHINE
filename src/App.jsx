@@ -58,14 +58,9 @@ export default function App() {
   const responsivePositions = basePositions.map(([x, y, z]) => {
   const responsiveX = isMobile ? x / 2 : x;
     let responsiveY = y;
-  //  let responsiveX = x;
-
     if (isMobile) {
       if (y === 60) responsiveY = 50;
       else if (y === -60) responsiveY = -50;
-
-      // if (x === 130) responsiveX = 80;
-      // else if (x === -130) responsiveX = -80;
     }
     return [responsiveX, responsiveY, z];
   });

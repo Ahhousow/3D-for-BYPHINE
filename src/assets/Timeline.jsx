@@ -53,7 +53,6 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
           .to(cameraRef.current.position, { x: 0, y: -350, z: 100 }, 0)
           //.to(cameraRef.current.position, { z: 300 }, 0.5)
           .to(cameraRef.current.position, { z: 550 }, 0.5)
-
           .to(sceneGroupRef.current.rotation, { y: "+=6.28318", z:"+=6.28318", ease: "none" }, 0);
 
         gsap.timeline({
@@ -96,10 +95,11 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
             id: "3d-actif-reach-us",
             trigger: ".reach-us",
             start: 'top center',
-            endTrigger: '#p-3',
-            end: 'bottom bottom',
+            endTrigger: '.vector-path',
+            end: 'center center',
             scrub: 1,
             invalidateOnRefresh: true,
+            markers: true,
           }
         })
         .to(groupRef.current.rotation, { x: "+=2.9", y: "+=3.5", z: "-=5.9", ease: "none" }, 0)
@@ -161,7 +161,7 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
           }
         })
         .to(groupRef.current.scale, { x: scale[0] * 1.4, y: scale[1] * 1.4, z: scale[2] * 1.4 }, 0)
-        .to(groupRef.current.position, {  y: "+=90", ease: "none" }, 0);
+        .to(groupRef.current.position, {  y: "+=130", ease: "none" }, 0);
 
       } else {
         // Pour tous les groupes (actifs ou inactifs), on synchronise via le même ScrollTrigger "3d-actif-start"
