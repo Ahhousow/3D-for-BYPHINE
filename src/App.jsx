@@ -64,8 +64,8 @@ export default function App() {
       if (y === 60) responsiveY = 50;
       else if (y === -60) responsiveY = -50;
 
-      if (x === 130) responsiveX = 100;
-      else if (x === -130) responsiveX = -100;
+      if (x === 130) responsiveX = 80;
+      else if (x === -130) responsiveX = -80;
     }
     return [responsiveX, responsiveY, z];
   });
