@@ -103,17 +103,20 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
           }
         })
         .to(groupRef.current.rotation, { x: "+=2.9", y: "+=3.5", z: "-=5.9", ease: "none" }, 0)
-        .to(groupRef.current.scale, { x: scale[0] * 0.7, y: scale[1] * 0.7, z: scale[2] * 0.7 }, 0)
+     //   .to(groupRef.current.scale, { x: scale[0] * 0.7, y: scale[1] * 0.7, z: scale[2] * 0.7 }, 0)
+        .to(cameraRef.current.position, { x: 0, y: 0, z: 200 }, 0)
         .to(groupRef.current.position, { x: "-=100", y: "-=20", ease: "none" }, 0);
 
         gsap.timeline({
           scrollTrigger: {
             id: "3d-actif-vector-path",
             trigger: ".vector-path",
-            start: 'center center',
+            start: 'top top',
             scrub: 1,
+            pin:true,
+            end: '+=400px', 
             invalidateOnRefresh: true,
-        //    markers:true,
+          markers:true,
             onEnter: () => {
               const textMaterials = [];
               if (modelContainerRef.current) {
@@ -123,10 +126,9 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
                   }
                 });
                 gsap.to(textMaterials, {
-                  duration: 0.3,
                   opacity: 1,
                   ease: "power2.out",
-                  stagger: 0.3
+                  stagger: 0.8
                 });
               }
             },
@@ -139,10 +141,9 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
                   }
                 });
                 gsap.to(textMaterials, {
-                  duration: 0.3,
                   opacity: 0,
                   ease: "power2.out",
-                  stagger: 0.3
+                  stagger: 0.8
                 });
               }
             },
