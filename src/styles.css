@@ -261,8 +261,9 @@ nav-contener
 
 .vector-path {
 position: relative;
-height: 100vh;
+height: 150vh;
 width: 100%;
+
 }
 
 .reach-us{
@@ -399,20 +400,28 @@ width: 100%;
 }
 
 .discover-portal {
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 100svh;
   display: flex;
+  position: sticky;
+  top: 0;
   padding-top: 10vh;
 }
 
 .img-portal-wrap {
   border-radius:15px;
-  position: relative;
+  position: absolute;
   padding-left: 0;
   padding-right: 0;
   overflow:hidden;
-  height: 80%;
-  width:50vw
+  height: 100%;
+  width:60vw;
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 128px;
 }
 .img-portal-wrap.left {
   z-index: 3;
@@ -436,6 +445,8 @@ width: 100%;
   object-fit: cover;
   width: 100%;
   height: 100%;
+  max-width: 100%;
+  display: inline-block;
 }
 @media (max-width: 768px) {
   .navigation {

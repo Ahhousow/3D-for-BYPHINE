@@ -123,8 +123,8 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
             trigger: ".vector-path",
             start: 'top top',
             scrub: 1,
-            pin:true,
-            end: '+=500px', 
+          pin:true,
+         end: '+=400px', 
             invalidateOnRefresh: true,
             onEnter: () => {
               const textMaterials = [];
@@ -141,7 +141,7 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
                 });
               }
             },
-            onToggle: () => {
+            onEnterBack: () => {
               const textMaterials = [];
               if (modelContainerRef.current) {
                 modelContainerRef.current.traverse(child => {
@@ -220,13 +220,15 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
         start: 'top+=100px bottom',
         scrub: 1,
         invalidateOnRefresh: true,
+        endTrigger: '.footer',
+        end: 'top bottom',
        // markers: true,
       }
     })
-      .fromTo(".img-portal-wrap.right", { x: "-50%", ease: "power2.out" },
-                                        { x: "50%", ease: "power2.out" }, 0)
-      .fromTo(".img-portal-wrap.left", { x: "50%", ease: "power2.out" },
-                                       { x: "-50%", ease: "power2.out" }, 0);
+      .fromTo(".img-portal-wrap.right", { x: "-30%", ease: "power2.out" },
+                                        { x: "90%", ease: "power2.out" }, 0)
+      .fromTo(".img-portal-wrap.left", { x: "30%", ease: "power2.out" },
+                                       { x: "-90%", ease: "power2.out" }, 0);
 
     timelinesCreated.current = true;
   }, [timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloatEnabled]);
