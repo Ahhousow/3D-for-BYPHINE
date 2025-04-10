@@ -52,6 +52,8 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
           )
           .to(cameraRef.current.position, { x: 0, y: -350, z: 100 }, 0)
           //.to(cameraRef.current.position, { z: 300 }, 0.5)
+          .to(cameraRef.current.position, { z: 400 }, 0.5)
+
           .to(sceneGroupRef.current.rotation, { y: "+=6.28318", z:"+=6.28318", ease: "none" }, 0);
 
         gsap.timeline({
