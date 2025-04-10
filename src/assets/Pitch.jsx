@@ -18,18 +18,14 @@ function Pitch({ model }) {
        </div>
        <div className="discover-portal"> 
            <div className="img-portal-wrap left"> 
-           <img src="https://cdn.prod.website-files.com/66fd5fb3c8ead7df2e10f477/67bc3d56f0aeab61e1f991e9_FINAL.10MEN0373%201%201.jpeg"
-           loading="lazy" sizes="(max-width: 864px) 100vw, 864px"
-           alt="" id="img-portal-left" className="img-portal"/>
+           <img src="https://cdn.prod.website-files.com/66fd5fb3c8ead7df2e10f477/67bc3d56f0aeab61e1f991e9_FINAL.10MEN0373%201%201.jpeg" alt="" id="img-portal-left" className="img-portal"/>
            </div>
            <div className="content-portal">
               <h1 className="heading-2 center">{model && model.name ? model.name : 'Model Name'}</h1>
               <a href={model.link} target="_blank" className="button-primary"> DISCOVER</a>
            </div>
            <div className="img-portal-wrap right"> 
-               <img src="https://cdn.prod.website-files.com/66fd5fb3c8ead7df2e10f477/67bc3d556bfcf86fbbd3b5a6_FINAL.10MEN0370%201%201.jpeg"
-               loading="lazy" sizes="(max-width: 864px) 100vw, 864px" 
-               alt="" id="img-portal-right" className="img-portal"/>
+               <img src="https://cdn.prod.website-files.com/66fd5fb3c8ead7df2e10f477/67bc3d556bfcf86fbbd3b5a6_FINAL.10MEN0370%201%201.jpeg" alt="" id="img-portal-right" className="img-portal"/>
            </div>
        </div>
       </div>

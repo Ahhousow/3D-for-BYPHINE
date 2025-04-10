@@ -408,7 +408,11 @@ width: 100%;
 .img-portal-wrap {
   border-radius:15px;
   position: relative;
+  padding-left: 0;
+  padding-right: 0;
   overflow:hidden;
+  height: 80%;
+  width:50vw
 }
 .img-portal-wrap.left {
   z-index: 3;
@@ -428,12 +432,21 @@ width: 100%;
   display: flex;
   position: relative;
 }
+.img-portal-wrap img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
 @media (max-width: 768px) {
   .navigation {
     /* width: 250px; */
   }
   .small-container {
     max-width: 400px;
+  }
+  .img-portal-wrap {
+    width: 90vw;
+
   }
 }
 
@@ -463,6 +476,10 @@ width: 100%;
   }
   .navigation {
     /* width: 200px; */
+  }
+  .img-portal-wrap {
+    width: 80vw;
+    height: 60%;
   }
 }
 @media screen and (max-width: 991px) {
