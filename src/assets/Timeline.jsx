@@ -77,7 +77,7 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
             id: "3d-actif-pitch",
             trigger: ".pitch",
             start: 'top-=80px center',
-            endTrigger: '.reach-us',
+            endTrigger: '#p-2',
             end: 'top center',
             scrub: 1,
             invalidateOnRefresh: false,
@@ -94,7 +94,7 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
           scrollTrigger: {
             id: "3d-actif-reach-us",
             trigger: ".reach-us",
-            start: 'top center',
+            start: 'bottom center',
             endTrigger: '.vector-path',
             end: 'center center',
             scrub: 1,
@@ -117,47 +117,52 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
         .to(cameraRef.current.position, { x: 0, y: 0, z: 200 }, 0)
         .to(groupRef.current.position, { x: "-=100", y: "-=20", ease: "none" }, 0);
 
-        gsap.timeline({
-          scrollTrigger: {
-            id: "3d-actif-vector-path",
-            trigger: ".vector-path",
-            start: 'top top',
-            scrub: 1,
-          pin:true,
-         end: '+=400px', 
-            invalidateOnRefresh: true,
-            onEnter: () => {
-              const textMaterials = [];
-              if (modelContainerRef.current) {
-                modelContainerRef.current.traverse(child => {
-                  if (child.name.includes("Text-")) {
-                    textMaterials.push(child.material);
-                  }
-                });
-                gsap.to(textMaterials, {
-                  opacity: 1,
-                  ease: "power2.out",
-                  stagger: 0.6
-                });
+          // Récupération des matériaux des meshes textes
+          const textMaterials = [];
+          if (modelContainerRef.current) {
+            modelContainerRef.current.traverse(child => {
+              if (child.name.includes("Text-")) {
+                textMaterials.push(child.material);
               }
-            },
-            onEnterBack: () => {
-              const textMaterials = [];
-              if (modelContainerRef.current) {
-                modelContainerRef.current.traverse(child => {
-                  if (child.name.includes("Text-")) {
-                    textMaterials.push(child.material);
-                  }
-                });
-                gsap.to(textMaterials, {
-                  opacity: 0,
-                  ease: "power2.out",
-                  stagger: 0.6
-                });
-              }
-            },
+            });
           }
-        });
+
+          // Création d'une timeline scrubbable qui inclut l'animation d'opacité et l'effet pulse sur le scale
+          const tltext = gsap.timeline({
+            scrollTrigger: {
+              id: "3d-actif-vector-path",
+              trigger: ".vector-path",
+              start: 'top top',
+              scrub: 1,
+              pin: true,
+              end: '+=400px',
+              invalidateOnRefresh: true,
+            }
+          });
+
+          // Pour chaque matériau (et donc pour chaque mesh), on anime son opacité et on déclenche en parallèle
+          // un effet pulse sur groupRef.current.scale
+          textMaterials.forEach((material, i) => {
+            // Tween pour l'opacité
+            tltext.to(material, {
+              opacity: 1,
+              ease: "power2.out",
+              duration: 0.6
+            }, i * 0.6);
+
+            // Tween pour l'effet pulse (scale) – en incrémentant par rapport à la valeur dynamique actuelle
+            tltext.to(groupRef.current.scale, {
+              x: "+=0.2",
+              y: "+=0.2",
+              z: "+=0.2",
+              duration: 0.2,
+              yoyo: true,
+              repeat: 1,
+              ease: "power1.inOut"
+            }, i * 0.6);
+          });
+
+        
 
         gsap.timeline({
           scrollTrigger: {

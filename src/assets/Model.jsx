@@ -10,6 +10,7 @@ const Model = ({
   cameraRef,
   controlsRef,
   setFloatEnabled,
+  floatEnabled, 
   sceneGroupRef,
   registerTimelineRefs
 }) => {
@@ -56,9 +57,13 @@ const Model = ({
      }, [registerTimelineRefs, groupIndex, position, scale, isActive]);
   return (
     <group ref={groupRef}>
-      <Float speed={2.5} rotationIntensity={1.5} floatIntensity={4.5}>
-        <group ref={modelContainerRef} />
-      </Float>
+ <Float 
+  speed={floatEnabled ? 2.5 : 0} 
+  rotationIntensity={floatEnabled ? 1.5 : 0} 
+  floatIntensity={floatEnabled ? 4.5 : 0}
+>
+  <group ref={modelContainerRef} />
+</Float>
     </group>
   );
 };

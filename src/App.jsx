@@ -185,6 +185,7 @@ export default function App() {
                   cameraRef={cameraRef}
                   controlsRef={controlsRef}
                   setFloatEnabled={setFloatEnabled}
+                  floatEnabled={floatEnabled}
                   sceneGroupRef={sceneGroupRef}
                   registerTimelineRefs={registerTimelineRefs}
                 />
