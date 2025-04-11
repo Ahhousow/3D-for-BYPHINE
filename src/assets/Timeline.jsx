@@ -90,51 +90,51 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
         .to(groupRef.current.scale, { x: scale[0] * 1.5, y: scale[1] * 1.5, z: scale[2] * 1.5, ease: "none" }, 0)
         .to(cameraRef.current.position, { x: 0, y: 0, z: 200 }, 0);
         
-// Fonction qui crée la timeline en fonction d'un scaleFactor
-const createTimeline = (scaleFactor) => {
-  return gsap.timeline({
-    scrollTrigger: {
-      id: "3d-actif-reach-us",
-      trigger: ".reach-us",
-      start: "bottom center",
-      endTrigger: ".vector-path",
-      end: "center center",
-      scrub: 1,
-      invalidateOnRefresh: true,
-    },
-  })
-  .to(groupRef.current.rotation, { x: "+=2.9", y: "+=3.5", z: "-=5.9", ease: "none" }, 0)
-  .to(groupRef.current.scale, {
-      x: scale[0] * scaleFactor,
-      y: scale[1] * scaleFactor,
-      z: scale[2] * scaleFactor,
-      ease: "none",
-    }, 0)
-  .to(cameraRef.current.position, { x: 0, y: 0, z: 200 }, 0)
-  .to(groupRef.current.position, { x: "-=100", y: "-=20", ease: "none" }, 0);
-};
+        // Fonction qui crée la timeline en fonction d'un scaleFactor
+        const createTimeline = (scaleFactor) => {
+          return gsap.timeline({
+            scrollTrigger: {
+              id: "3d-actif-reach-us",
+              trigger: ".reach-us",
+              start: "bottom center",
+              endTrigger: ".vector-path",
+              end: "center center",
+              scrub: 1,
+              invalidateOnRefresh: true,
+            },
+          })
+          .to(groupRef.current.rotation, { x: "+=2.9", y: "+=3.5", z: "-=5.9", ease: "none" }, 0)
+          .to(groupRef.current.scale, {
+              x: scale[0] * scaleFactor,
+              y: scale[1] * scaleFactor,
+              z: scale[2] * scaleFactor,
+              ease: "none",
+            }, 0)
+          .to(cameraRef.current.position, { x: 0, y: 0, z: 200 }, 0)
+          .to(groupRef.current.position, { x: "-=100", y: "-=20", ease: "none" }, 0);
+        };
 
-// Utilisation de gsap.matchMedia pour adapter la timeline sans dupliquer le code
-const mm = gsap.matchMedia();
+        // Utilisation de gsap.matchMedia pour adapter la timeline sans dupliquer le code
+        const mm = gsap.matchMedia();
 
-mm.add("(max-width: 768px)", () => {
-  // Pour mobile, on applique par exemple un scaleFactor de 0.7
-  const tlMobile = createTimeline(0.7);
+        mm.add("(max-width: 768px)", () => {
+          // Pour mobile, on applique par exemple un scaleFactor de 0.7
+          const tlMobile = createTimeline(0.7);
 
-  // Retour optionnel pour nettoyer la timeline lors du changement de media query
-  return () => {
-    tlMobile.kill();
-  };
-});
+          // Retour optionnel pour nettoyer la timeline lors du changement de media query
+          return () => {
+            tlMobile.kill();
+          };
+        });
 
-mm.add("(min-width: 768px)", () => {
-  // Pour desktop/tablette, on utilise par exemple un scaleFactor de 1.2
-  const tlDesktop = createTimeline(1.2);
+        mm.add("(min-width: 768px)", () => {
+          // Pour desktop/tablette, on utilise par exemple un scaleFactor de 1.2
+          const tlDesktop = createTimeline(1.2);
 
-  return () => {
-    tlDesktop.kill();
-  };
-});
+          return () => {
+            tlDesktop.kill();
+          };
+        });
 
 
         // Récupération des matériaux des meshes textes
@@ -152,10 +152,11 @@ mm.add("(min-width: 768px)", () => {
           scrollTrigger: {
             id: "3d-actif-vector-path",
             trigger: ".vector-path",
-            start: 'top top',
+            start: 'center+=50px center',
             scrub: 1,
             pin: true,
-            end: '+=400px',
+            pinSpacing: true,
+            end: '+=800px',
             invalidateOnRefresh: true,
           }
         });
