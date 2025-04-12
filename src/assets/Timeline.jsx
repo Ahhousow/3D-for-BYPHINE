@@ -72,74 +72,72 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
           }
         });
 
-// Création de la timeline maître avec un unique ScrollTrigger
-const masterTimeline = gsap.timeline({
-  scrollTrigger: {
-    id: "merged-3d-animation",
-    trigger: ".pitch",
-    start: 'top-=80px center',
-    endTrigger: ".vector-path",
-    end: "center center",
-    scrub: 1,
-    invalidateOnRefresh: false,
-    onEnter: () => setFloatEnabled(false),
-    onLeaveBack: () => setFloatEnabled(true),
-  }
-});
+        const mm = gsap.matchMedia();
 
-// --- Segment "3d-actif-pitch" ---
-masterTimeline.addLabel("pitch", 0);
-masterTimeline
-  .to(groupRef.current.rotation, { x: "+=3.14159", y: "+=3.14159", ease: "none" }, "pitch")
-  .to(groupRef.current.position, { x: "+=100", ease: "none" }, "pitch")
-  .to(groupRef.current.scale, { x: scale[0] * 1.5, y: scale[1] * 1.5, z: scale[2] * 1.5, ease: "none" }, "pitch")
-  .to(cameraRef.current.position, { x: 0, y: 0, z: 200, ease: "none" }, "pitch");
-
-// On ajoute le label "reachUs" 0,1s après la fin de la partie "pitch" en utilisant la durée totale actuelle de la timeline
-masterTimeline.addLabel("reachUs", masterTimeline.duration() + 0.1);
-
-// --- Fonction pour ajouter le segment "3d-actif-reach-us" ---
-// Les tweens de ce segment seront positionnés à partir du label "reachUs"
-const addReachUsAnimations = (scaleFactor) => {
-  masterTimeline
-    .to(groupRef.current.rotation, { x: "+=2.9", y: "+=3.5", z: "-=5.9", ease: "none" }, "reachUs")
-    .to(
-      groupRef.current.scale,
-      {
-        x: scale[0] * scaleFactor,
-        y: scale[1] * scaleFactor,
-        z: scale[2] * scaleFactor,
-        ease: "none",
-      },
-      "reachUs"
-    )
-    .to(cameraRef.current.position, { x: 0, y: 0, z: 200, ease: "none" }, "reachUs")
-    .to(groupRef.current.position, { x: "-=100", y: "-=20", ease: "none" }, "reachUs");
-};
-
-// --- Application du scaleFactor en fonction des media queries ---
-const mm = gsap.matchMedia();
-
-mm.add("(max-width: 768px)", () => {
-  // Pour mobile, on applique un scaleFactor de 0.7
-  addReachUsAnimations(0.7);
-  
-  // Nettoyage optionnel lors du changement de media query
-  return () => {
-    // Par exemple : masterTimeline.clear(); si nécessaire
-  };
-});
-
-mm.add("(min-width: 768px)", () => {
-  // Pour desktop/tablette, on utilise un scaleFactor de 1.2
-  addReachUsAnimations(1.2);
-  
-  return () => {
-    // Nettoyage optionnel si nécessaire
-  };
-});
-
-
+        mm.add(
+          {
+            isDesktop: "(min-width: 768px)",
+            isMobile: "(max-width: 768px)"
+          },
+          (context) => {
+            const { isDesktop, isMobile } = context.conditions;
+            
+            // Choix du scaleFactor selon le media query
+            const scaleFactor = isDesktop ? 1.2 : 0.7;
+            // Choix du décalage sur l'axe X pour le tween de la partie "pitch"
+            const pitchXOffset = isDesktop ? "+=100" : "+=50";
+            // Choix du décalage sur l'axe X pour le tween de la partie "reachUs"
+            const reachUsXOffset = isDesktop ? "-=100" : "-=50";
+        
+            // Création de la timeline maître avec un ScrollTrigger commun
+            const masterTimeline = gsap.timeline({
+              scrollTrigger: {
+                id: "merged-3d-animation",
+                trigger: ".pitch",
+                start: 'top-=80px center',
+                endTrigger: ".vector-path",
+                end: "center center",
+                scrub: 1,
+                invalidateOnRefresh: false,
+                onEnter: () => setFloatEnabled(false),
+                onLeaveBack: () => setFloatEnabled(true)
+              }
+            });
+        
+            // --- Segment "3d-actif-pitch" ---
+            masterTimeline.addLabel("pitch", 0);
+            masterTimeline
+              .to(groupRef.current.rotation, { x: "+=3.14159", y: "+=3.14159", ease: "none" }, "pitch")
+              // Définition du décalage X en fonction du media query
+              .to(groupRef.current.position, { x: pitchXOffset, ease: "none" }, "pitch")
+              .to(groupRef.current.scale, { x: scale[0] * 1.5, y: scale[1] * 1.5, z: scale[2] * 1.5, ease: "none" }, "pitch")
+              .to(cameraRef.current.position, { x: 0, y: 0, z: 200, ease: "none" }, "pitch");
+        
+            // Positionnement du label "reachUs" 0.1 seconde après la fin du segment "pitch"
+            masterTimeline.addLabel("reachUs", masterTimeline.duration() + 0.1);
+        
+            // --- Segment "3d-actif-reach-us" ---
+            masterTimeline
+              .to(groupRef.current.rotation, { x: "+=2.9", y: "+=3.5", z: "-=5.9", ease: "none" }, "reachUs")
+              .to(
+                groupRef.current.scale,
+                {
+                  x: scale[0] * scaleFactor,
+                  y: scale[1] * scaleFactor,
+                  z: scale[2] * scaleFactor,
+                  ease: "none"
+                },
+                "reachUs"
+              )
+              .to(cameraRef.current.position, { x: 0, y: 0, z: 200, ease: "none" }, "reachUs")
+              // Définition du décalage X en fonction du media query pour le segment "reachUs"
+              .to(groupRef.current.position, { x: reachUsXOffset, y: "-=20", ease: "none" }, "reachUs");
+        
+            // Optionnel : retourner une fonction de nettoyage
+            return () => masterTimeline.kill();
+          }
+        );
+        
 
 
         // Récupération des matériaux des meshes textes
