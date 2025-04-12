@@ -72,69 +72,78 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
           }
         });
 
-        gsap.timeline({
+        // Création de la timeline maîtresse avec un unique ScrollTrigger
+        const masterTimeline = gsap.timeline({
           scrollTrigger: {
-            id: "3d-actif-pitch",
+            id: "merged-3d-animation",
             trigger: ".pitch",
             start: 'top-=80px center',
-            endTrigger: '#p-2',
-            end: 'top center',
+            // On récupère ici l’élément de fin de la timeline "reach-us"
+            endTrigger: ".vector-path",
+            end: "center center",
             scrub: 1,
             invalidateOnRefresh: false,
             onEnter: () => setFloatEnabled(false),
-            onLeaveBack: () => setFloatEnabled(true)
+            onLeaveBack: () => setFloatEnabled(true),
           }
-        })
-        .to(groupRef.current.rotation, { x: "+=3.14159", y: "+=3.14159", ease: "none" }, 0)
-        .to(groupRef.current.position, { x: "+=100", ease: "none" }, 0)
-        .to(groupRef.current.scale, { x: scale[0] * 1.5, y: scale[1] * 1.5, z: scale[2] * 1.5, ease: "none" }, 0)
-        .to(cameraRef.current.position, { x: 0, y: 0, z: 200 }, 0);
-        
-        // Fonction qui crée la timeline en fonction d'un scaleFactor
-        const createTimeline = (scaleFactor) => {
-          return gsap.timeline({
-            scrollTrigger: {
-              id: "3d-actif-reach-us",
-              trigger: ".reach-us",
-              start: "bottom center",
-              endTrigger: ".vector-path",
-              end: "center center",
-              scrub: 1,
-              invalidateOnRefresh: true,
-            },
-          })
-          .to(groupRef.current.rotation, { x: "+=2.9", y: "+=3.5", z: "-=5.9", ease: "none" }, 0)
-          .to(groupRef.current.scale, {
-              x: scale[0] * scaleFactor,
-              y: scale[1] * scaleFactor,
-              z: scale[2] * scaleFactor,
-              ease: "none",
-            }, 0)
-          .to(cameraRef.current.position, { x: 0, y: 0, z: 200 }, 0)
-          .to(groupRef.current.position, { x: "-=100", y: "-=20", ease: "none" }, 0);
+        });
+
+        // Ajout de labels pour délimiter les deux segments de l’animation
+        masterTimeline.addLabel("pitch", 0);
+        masterTimeline.addLabel("reachUs", 1);
+
+        // --- Segment "3d-actif-pitch" (identique au comportement actuel) ---
+        masterTimeline
+          .to(groupRef.current.rotation, { x: "+=3.14159", y: "+=3.14159", ease: "none" }, "pitch")
+          .to(groupRef.current.position, { x: "+=100", ease: "none" }, "pitch")
+          .to(
+            groupRef.current.scale,
+            { x: scale[0] * 1.5, y: scale[1] * 1.5, z: scale[2] * 1.5, ease: "none" },
+            "pitch"
+          )
+          .to(cameraRef.current.position, { x: 0, y: 0, z: 200, ease: "none" }, "pitch");
+
+        // --- Fonction pour ajouter le segment "3d-actif-reach-us" ---
+        // Ce segment s’insère après le label "reachUs", garantissant ainsi l’ordre souhaité.
+        const addReachUsAnimations = (scaleFactor) => {
+          masterTimeline
+            .to(groupRef.current.rotation, { x: "+=2.9", y: "+=3.5", z: "-=5.9", ease: "none" }, "reachUs")
+            .to(
+              groupRef.current.scale,
+              {
+                x: scale[0] * scaleFactor,
+                y: scale[1] * scaleFactor,
+                z: scale[2] * scaleFactor,
+                ease: "none",
+              },
+              "reachUs"
+            )
+            .to(cameraRef.current.position, { x: 0, y: 0, z: 200, ease: "none" }, "reachUs")
+            .to(groupRef.current.position, { x: "-=100", y: "-=20", ease: "none" }, "reachUs");
         };
 
-        // Utilisation de gsap.matchMedia pour adapter la timeline sans dupliquer le code
+        // --- Application du scaleFactor en fonction du media query ---
         const mm = gsap.matchMedia();
 
         mm.add("(max-width: 768px)", () => {
-          // Pour mobile, on applique par exemple un scaleFactor de 0.7
-          const tlMobile = createTimeline(0.7);
-
-          // Retour optionnel pour nettoyer la timeline lors du changement de media query
+          // Pour mobile, on applique un scaleFactor de 0.7
+          addReachUsAnimations(0.7);
+          
+          // Optionnel : retour pour nettoyer si le media query change
           return () => {
-            tlMobile.kill();
+            // Par exemple : masterTimeline.clear(); si besoin
           };
         });
 
         mm.add("(min-width: 768px)", () => {
-          // Pour desktop/tablette, on utilise par exemple un scaleFactor de 1.2
-          const tlDesktop = createTimeline(1.2);
-
+          // Pour desktop/tablette, on utilise un scaleFactor de 1.2
+          addReachUsAnimations(1.2);
+          
           return () => {
-            tlDesktop.kill();
+            // Nettoyage optionnel si nécessaire
           };
         });
+
 
 
         // Récupération des matériaux des meshes textes
