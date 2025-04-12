@@ -167,20 +167,26 @@ canvas{
   z-index: 300;
   /* background-color: bisque; */
 }
+
 .navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: block;
     width: 100%;
     position: relative;
     /* bottom: 60px; */
     font-size: 55px;
-    flex-direction: column;
-    align-content: center;
     /* padding-bottom: 50px; */
     z-index: 300;
   }
-
+  .nav-contener {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    max-width: 558px;
+    margin:auto;
+  
+  }
 .nav-title{
   font-family: Poppins, sans-serif;
   display: block;
@@ -245,11 +251,7 @@ canvas{
 
   }
 
-.nav-contener {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 nav-contener
 .content {
   position: absolute;

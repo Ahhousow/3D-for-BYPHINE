@@ -5,7 +5,7 @@
 const modelsData = [
     { 
       id: 1, 
-      name: 'Creative Studio', 
+      name: 'Creative', 
       file: 'https://master--bejewelled-bunny-c31012.netlify.app/models/DA-TEXT.glb', 
       link: 'https://byphine-creative.webflow.io/fragments/creative-direction', 
       p1: `AT BYPHINE, <br>OUR AIM IS TO COMBINE ALL AREAS AND MAKE THEM WORK IN SYNERGY. 

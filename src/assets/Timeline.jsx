@@ -63,12 +63,16 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
             end: '+=300px',
             pin: true,
             invalidateOnRefresh: false,
-            onLeave: () => {
-              gsap.to(".nav-item", { display: "none", ease: 'none' }, 0);
-            },
-            onEnterBack: () => {
-              gsap.to(".nav-item", { display: "flex", ease: 'none' }, 0);
-            }
+            // onLeave: () => {
+            //   gsap.to(".nav-item", { opacity: "0", ease: 'none' }, 0);
+            //   document.querySelector(".nav-arrow").disabled = true;
+
+            // },
+            // onEnterBack: () => {
+            //   gsap.to(".nav-item", { opacity:"1", ease: 'none' }, 0);
+            //   document.querySelector(".nav-arrow").disabled = false;
+
+            // }
           }
         });
 

@@ -16,6 +16,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
+    // Scroll en haut au rechargement
+useEffect(() => { if ("scrollRestoration" in window.history) {window.history.scrollRestoration = "manual";} window.scrollTo(0, 0);}, []);
+
+
   const cameraRef = useRef();
   const controlsRef = useRef();
   const [floatEnabled, setFloatEnabled] = useState(true);
@@ -150,6 +154,7 @@ export default function App() {
       .from(".logo-header, .menu-open", { opacity: 0, y: -30, duration: 0.75 })
       .from(".scene3d", { opacity: 0, y: -30, duration: 0.75 });
   }, []);
+
 
   return (
     <div className="app">
