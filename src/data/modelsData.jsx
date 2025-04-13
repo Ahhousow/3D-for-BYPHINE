@@ -17,6 +17,7 @@ const modelsData = [
       coloreye: '#FFFFFF',
       targetMesh: 'Mesh_0003',
       direction: 'right',
+      eye:'https://cdn.prod.website-files.com/66fd5fb3c8ead7df2e10f477/67fb56f4ee648dcac775d3c5_ROUGE.svg'
     },
     { 
       id: 2, 
@@ -32,6 +33,8 @@ const modelsData = [
       coloreye: '#FFFFFF',
       targetMesh: 'Mesh_0005',
       direction: 'left',
+      eye:'https://cdn.prod.website-files.com/66fd5fb3c8ead7df2e10f477/67fb56f4286c19f6c0468a76_VERT.svg'
+
     },
     { 
       id: 3, 
@@ -47,6 +50,8 @@ const modelsData = [
       coloreye: '#FFFFFF',
       targetMesh: 'Mesh_0009',
       direction: 'right',
+      eye:'https://cdn.prod.website-files.com/66fd5fb3c8ead7df2e10f477/67fb56f4998436ceed279c87_BLEU.svg'
+
     },
     { 
       id: 4, 
@@ -61,6 +66,8 @@ const modelsData = [
       coloreye: '#FFFFFF',
       targetMesh: 'Mesh_0006',
       direction: 'left',
+      eye:'https://cdn.prod.website-files.com/66fd5fb3c8ead7df2e10f477/67fb56f49daf805974472dbb_JAUNE.svg'
+
     },
     { 
       id: 5, 
@@ -75,6 +82,8 @@ const modelsData = [
       coloreye: '#FFFFFF',
       targetMesh: 'Mesh_0008',
       direction: 'right',
+      eye:'https://cdn.prod.website-files.com/66fd5fb3c8ead7df2e10f477/67fb56f49daf805974472db7_ORANGE.svg'
+
     },
   ];
 
