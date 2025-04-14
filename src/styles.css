@@ -163,7 +163,7 @@ canvas{
   display: block;
   position: relative;
   width: 100vw;
-  height: 200vh;
+  height: 100vh;
   z-index: 300;
   /* background-color: bisque; */
 }
