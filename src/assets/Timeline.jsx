@@ -163,32 +163,29 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
             scrub: 1,
             pin: true,
             pinSpacing: true,
-            end: '+=800px',
+            end: '+=300px',
             invalidateOnRefresh: true,
           }
         });
 
-        // Pour chaque matériau (et donc pour chaque mesh), on anime son opacité et on déclenche en parallèle
-        // un effet pulse sur groupRef.current.scale
-        textMaterials.forEach((material, i) => {
-          // Tween pour l'opacité
-          tltext.to(material, {
+
+          // Animation simultanée pour l'opacité de tous les matériaux textes
+          tltext.to(textMaterials, {
             opacity: 1,
             ease: "power2.out",
             duration: 0.6
-          }, i * 0.6);
+          }, 0);
 
-          // Tween pour l'effet pulse (scale) – en incrémentant par rapport à la valeur dynamique actuelle
-          tltext.to(groupRef.current.scale, {
-            x: "+=0.2",
-            y: "+=0.2",
-            z: "+=0.2",
-            duration: 0.2,
-            yoyo: true,
-            repeat: 1,
-            ease: "power1.inOut"
-          }, i * 0.6);
-        });
+        // Effet pulse unique sur le scale
+        tltext.to(groupRef.current.scale, {
+          x: "+=0.2",
+          y: "+=0.2",
+          z: "+=0.2",
+          duration: 0.2,
+          yoyo: true,
+          repeat: 1,
+          ease: "power1.inOut"
+        }, 0);
 
         
 
@@ -258,10 +255,10 @@ const Timeline = ({ timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloa
        // markers: true,
       }
     })
-      .fromTo(".img-portal-wrap.right", { x: "-30%", ease: "power2.out" },
-                                        { x: "90%", ease: "power2.out" }, 0)
-      .fromTo(".img-portal-wrap.left", { x: "30%", ease: "power2.out" },
-                                       { x: "-90%", ease: "power2.out" }, 0);
+      .fromTo(".img-portal-wrap.right", { x: "-5%", ease: "power2.out" },
+                                        { x: "85%", ease: "power2.out" }, 0)
+      .fromTo(".img-portal-wrap.left", { x: "5%", ease: "power2.out" },
+                                       { x: "-85%", ease: "power2.out" }, 0);
 
     timelinesCreated.current = true;
   }, [timelineRefs, cameraRef, controlsRef, sceneGroupRef, setFloatEnabled]);
