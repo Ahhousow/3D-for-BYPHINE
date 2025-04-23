@@ -25,12 +25,7 @@ export default function Hero({ showSkip = false, onSkip = () => {} }) {
 
       {/* ───────── Skip button (visible only if App says so) ───────── */}
       {showSkip && (
-        <button
-          onClick={onSkip}
-          className="button-primary skip-intro"
-        >
-          Skip intro
-        </button>
+        <button onClick={onSkip} className="button-primary skip-intro">Skip intro</button>
       )}
     </div>
   );
