@@ -59,6 +59,14 @@ canvas{
   padding: 64px 24px;
 
 }
+
+.skip-intro{
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+}
 .copyright-byphine {
   color: #1f1f1f;
   text-align: center;
@@ -428,7 +436,6 @@ width: 100%;
 .img-portal-wrap.left {
   z-index: 3;
   transform-origin: 0 100%;
-
 }
 .img-portal-wrap.right {
   z-index: 2;
@@ -486,9 +493,7 @@ width: 100%;
   .content {
     font-size: 63px;
   }
-  .navigation {
-    /* width: 200px; */
-  }
+
   .img-portal-wrap {
     width: 80vw;
     height: 60%;

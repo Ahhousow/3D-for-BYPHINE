@@ -25,6 +25,11 @@ useEffect(() => { if ("scrollRestoration" in window.history) {window.history.scr
   const [floatEnabled, setFloatEnabled] = useState(true);
   const sceneGroupRef = useRef();
   const [isSceneGroupReady, setIsSceneGroupReady] = useState(false);
+  const introVisited     = sessionStorage.getItem('introVisited') === 'true';
+
+  const [showIntro, setShowIntro] = useState(true);   // overlay on/off
+  const [showSkip,  setShowSkip ] = useState(introVisited); // button visible?
+  const introTL = useRef(null);
 
   // On stocke les références des modèles dans un ref
   const timelineRefs = useRef([]);
@@ -129,8 +134,24 @@ useEffect(() => { if ("scrollRestoration" in window.history) {window.history.scr
     return false;
   };
 
+  function finishIntro() {
+    setShowSkip(false); 
+    sessionStorage.setItem('introVisited', 'true');
+    setShowIntro(false);            // fade out overlay + button
+    window.removeEventListener('wheel', preventScroll);
+    window.removeEventListener('touchmove', preventScroll);
+  }
+  
+  function handleSkip() {
+    setShowSkip(false); 
+    sessionStorage.setItem('introVisited', 'true');
+    introTL.current?.progress(1);   // jump to the end
+    setShowIntro(false);
+  }
+
   // Animation d'intro avec gsap et SplitType (inchangée)
   useLayoutEffect(() => {
+
     window.addEventListener('wheel', preventScroll, { passive: false });
     window.addEventListener('touchmove', preventScroll, { passive: false });
 
@@ -139,26 +160,30 @@ useEffect(() => { if ("scrollRestoration" in window.history) {window.history.scr
     const copyrightTitle = new SplitType(".copyright-byphine");
     const heroDescTitle = new SplitType(".desc-byphine", { types: "words, chars" });
 
-    const introTL = gsap.timeline({
-      onComplete: () => {
-        window.removeEventListener('wheel', preventScroll);
-        window.removeEventListener('touchmove', preventScroll);
-      },
-    });
+    introTL.current = gsap.timeline({
+      onComplete: finishIntro 
+    })
    // Les animations d'intro sont laissées en commentaire comme dans la version d'origine
-    introTL
+    
       .from(heroTitle.chars, { duration: 0.2, ease: "back", filter: "blur(0.3em)", opacity: 0, scale: 1.5, stagger: 0.2 })
       .from(heroSubTitle.chars, { duration: 0.2, delay: 0.25, ease: "back", filter: "blur(0.3em)", opacity: 0, scale: 0.5, stagger: 0.02, xPercent: -25 })
       .from(heroDescTitle.chars, { duration: 0.5, filter: "blur(0.3em)", opacity: 0, y: 10, stagger: 0.02 })
       .from(copyrightTitle.chars, { duration: 0.5, filter: "blur(0.3em)", opacity: 0, y: 10, stagger: 0.02 }, "<")
       .from(".logo-header, .menu-open", { opacity: 0, y: -30, duration: 0.75 })
       .from(".scene3d", { opacity: 0, y: -30, duration: 0.75 });
+
+          /* Cleanup if the component unmounts mid‑intro */
+    return () => {
+      introTL.current?.kill();
+      window.removeEventListener('wheel', preventScroll);
+      window.removeEventListener('touchmove', preventScroll);
+    };
   }, []);
 
 
   return (
     <div className="app">
-      <Hero />
+    <Hero showSkip={showSkip} onSkip={handleSkip} />
       <div
         className="scene-3d-wrapper"
         style={{
