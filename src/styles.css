@@ -62,9 +62,9 @@ canvas{
 
 .skip-intro{
   position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
+  bottom: 50px;
+  left: auto;
+  right: auto;
   z-index: 2000;
 }
 .copyright-byphine {

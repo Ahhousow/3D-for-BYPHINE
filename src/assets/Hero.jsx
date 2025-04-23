@@ -27,7 +27,7 @@ export default function Hero({ showSkip = false, onSkip = () => {} }) {
       {showSkip && (
         <button
           onClick={onSkip}
-          className="secondary-button skip-intro"
+          className="button-primary skip-intro"
         >
           Skip intro
         </button>
