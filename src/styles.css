@@ -62,7 +62,7 @@ canvas{
 
 .skip-intro{
   position: absolute;
-  bottom: 50px;
+  bottom: 350px;
   left: auto;
   right: auto;
   z-index: 2000;
