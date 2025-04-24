@@ -19,7 +19,7 @@ function Navigation({ model, onPrev, onNext }) {
         <div className="nav-item">
           <button id="left-arrow" onClick={onPrev} className="nav-arrow"></button>
         </div>
-        <a href={model.link} target="_blank" rel="noopener noreferrer">
+        <a href={model.link} rel="noopener noreferrer">
           {/* Application du curseur personnalisé sur le titre en hover */}
           <h1 className="nav-title" style={{ cursor: customCursor }}>
             {model && model.name ? model.name : 'Model Name'}
