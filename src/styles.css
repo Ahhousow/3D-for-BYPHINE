@@ -62,7 +62,7 @@ canvas{
 
 .skip-intro{
   position: absolute;
-  bottom: 100px;
+  bottom: 50px;
   left: auto;
   right: auto;
   z-index: 2000;
@@ -469,6 +469,9 @@ width: 100%;
 }
 
 @media screen and (max-width: 479px) {
+  .skip-intro{
+    bottom: 150px;
+  }
   .nav-title{
     font-size: 0.5em;
   }
