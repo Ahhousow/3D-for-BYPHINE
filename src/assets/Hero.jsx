@@ -12,7 +12,7 @@ export default function Hero({ showSkip = false, onSkip = () => {} }) {
             </div>
 
             <div className="big-title-byphine">BYPHINE</div>
-            <div className="subtitle-byphine">for modern brand</div>
+            <div className="subtitle-byphine"><span class="quote">"</span>INSPIRED BY WHAT WE SAW, CREATED TO BE SEEN<span class="quote">"</span></div>
 
             <div className="desc-byphine">
               WE CRAFT UNIQUE, INNOVATIVE AND MEMORABLE DIGITAL EXPERIENCES
@@ -23,7 +23,7 @@ export default function Hero({ showSkip = false, onSkip = () => {} }) {
         </div>
       </div>
 
-      {/* ───────── Skip button (visible only if App says so) ───────── */}/********* */
+      {/* ───────── Skip button (visible only if App says so) ───────── */}
       {showSkip && (
         <button onClick={onSkip} className="button-primary skip-intro">Skip intro</button>
       )}
