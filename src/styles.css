@@ -509,7 +509,7 @@ width: 100%;
     font-size: 2.5vw;
   }
   .subtitle-byphine {
-    font-size: .10em;
+    font-size: .09em;
     line-height: 1.5em;
     letter-spacing: .13em;
 
@@ -521,6 +521,7 @@ width: 100%;
   .copyright-byphine {
     line-height: 1.5em;
     letter-spacing: .25em;
+    font-size: .08em;
 
   }
   .content {
