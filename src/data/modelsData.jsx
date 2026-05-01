@@ -5,13 +5,13 @@
 const modelsData = [
     { 
       id: 1, 
-      name: 'Creative', 
+      name: 'Creative Studio', 
       file: 'https://master--bejewelled-bunny-c31012.netlify.app/models/DA-TEXT.glb', 
       link: 'https://byphine-creative.webflow.io/fragments/creative-direction', 
-      p1: `AT BYPHINE, <br>OUR AIM IS TO COMBINE ALL AREAS AND MAKE THEM WORK IN SYNERGY. 
-            CREATE THE PERFECT HYBRID AGENCY ALWAYS STARTING OUT WITH THE EYES OF <span class="color-red">THE CREATIVE STUDIO.</span>
+      p1: `AT THE HEART OF BYPHINE IS A <span class="color-red">CREATIVE STUDIO</span> BUILT AROUND ONE PRINCIPLE : NO TWO PROJECTS LOOK THE SAME.
+           BOLD CONCEPTS. SINGULAR VISION. BUILT AROUND EACH CLIENT'S IDENTITY.
          </div>`,
-      p2:`THE AGENCYS CREATIVE STUDIO ASSISTS CLIENTS WITH THE ARTISTIC AND CREATIVE DIRECTION.&nbsp;,`,
+      p2:`EVERY BRIEF IS A NEW TERRITORY. WE BUILD VISUAL NARRATIVES FROM SCRATCH ROOTED IN THE CLIENT'S DNA, ELEVATED BY OUR PERSPECTIVE.&nbsp;`,
       p3:`WE PAY PARTICULAR ATTENTION TO THE RELEVANCE AND EXCELLENCE OF THE FINISHED PRODUCT.`,
       color: '#FE0000',
       coloreye: '#FFFFFF',
@@ -21,7 +21,7 @@ const modelsData = [
     },
     { 
       id: 2, 
-      name: 'Consulting', 
+      name: 'Brand Consulting', 
       file: 'https://master--bejewelled-bunny-c31012.netlify.app/models/consulting-transformed.glb', 
       link: 'https://byphine-creative.webflow.io/fragments/consulting', 
       p1: `AT BYPHINE, <br>OUR AIM IS TO COMBINE ALL AREAS AND MAKE THEM WORK IN SYNERGY. 
@@ -55,7 +55,7 @@ const modelsData = [
     },
     { 
       id: 4, 
-      name: 'Management', 
+      name: 'Production', 
       file: 'https://master--bejewelled-bunny-c31012.netlify.app/models/management-transformed.glb', 
       link: 'https://byphine-creative.webflow.io/fragments/management', 
       p1: `AT BYPHINE, <br>OUR AIM IS TO COMBINE ALL AREAS AND MAKE THEM WORK IN SYNERGY. 
