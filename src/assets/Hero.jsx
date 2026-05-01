@@ -15,9 +15,8 @@ export default function Hero({ showSkip = false, onSkip = () => {} }) {
             <div className="subtitle-byphine"><span class="quote">"</span>INSPIRED BY WHAT WE SAW, CREATED TO BE SEEN<span class="quote">"</span></div>
 
             <div className="desc-byphine">
-              WE CRAFT UNIQUE, INNOVATIVE AND MEMORABLE DIGITAL EXPERIENCES
-              THAT STRIVE TO PUSH THE BOUNDARIES AND LEAVE A LASTING IMPACT
-              THROUGH DESIGN AND INTERACTIVITY
+              HYBRID CREATIVE - AGENCY FOUR DIVISIONS, ONE CREATIVE OBSESSION.
+              WE BUILD IMAGE, STRATEGY AND EXPERIENCES FOR FASHION, MUSIC AND LIFESTYLE BRANDS -
             </div>
           </div>
         </div>

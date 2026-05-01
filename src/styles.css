@@ -75,7 +75,7 @@ canvas{
   margin-top: 0;
   margin-bottom: 0;
   font-family: Poppins, sans-serif;
-  font-size: .09em;
+  font-size: .11em;
   font-weight: 300;
   line-height: .7em;
   text-decoration: none;
@@ -484,6 +484,7 @@ width: 100%;
   .subtitle-byphine {
     font-size: .8em;
     line-height: 1em;
+    letter-spacing: .15em;
   }
   .big-title-byphine {
     font-size: 0.5em;
@@ -491,6 +492,8 @@ width: 100%;
   }
   .copyright-byphine {
     line-height: .7em;
+    font-size: .11em;
+
   }
   .content {
     font-size: 63px;
