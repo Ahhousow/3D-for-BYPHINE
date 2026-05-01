@@ -76,7 +76,7 @@ canvas{
   margin-bottom: 0;
   font-family: Poppins, sans-serif;
   font-size: .09em;
-  font-weight: 200;
+  font-weight: 300;
   line-height: .7em;
   text-decoration: none;
 }
@@ -111,9 +111,9 @@ canvas{
   margin-top: 0;
   margin-bottom: 0;
   font-family: Poppins, sans-serif;
-  font-size: .12em;
+  font-size: .10em;
   font-weight: 300;
-  line-height: 1.2em;
+  line-height: 1em;
   text-decoration: none;
 }
 .small-container {
@@ -482,8 +482,8 @@ width: 100%;
     line-height: 1.2em;
   }
   .subtitle-byphine {
-    font-size: .10em;
-    line-height: .7em;
+    font-size: .8em;
+    line-height: 1em;
   }
   .big-title-byphine {
     font-size: 0.5em;
@@ -506,18 +506,22 @@ width: 100%;
     max-width: 600px;
   }
   .desc-byphine {
-    font-size: 3vw;
+    font-size: 2.5vw;
   }
   .subtitle-byphine {
     font-size: .10em;
-    line-height: .7em;
+    line-height: 1.5em;
+    letter-spacing: .13em;
+
   }
   .big-title-byphine {
-    font-size: 0.5em;
+    font-size: 0.7em;
     line-height: 0.5em;
   }
   .copyright-byphine {
-    line-height: .7em;
+    line-height: 1.5em;
+    letter-spacing: .25em;
+
   }
   .content {
     font-size: 138px;
